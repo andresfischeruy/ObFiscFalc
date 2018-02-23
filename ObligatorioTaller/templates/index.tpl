@@ -20,7 +20,13 @@
         <div id="header">
             <div class="container">
                 <div id="welcomeLine" class="row">
-                    <div class="span6">Bienvenido<strong> usuario</strong></div>
+                    {if (!isset($usuario))}
+                        <div class="span6">Bienvenido<strong> usuario</strong></div>
+                    {else}
+                        <div class="span6">Bienvenido<strong> {$usuario.usuario}</strong></div>
+                        <a href="doLogout.php">Salir</a>
+                    {/if}
+
 
                 </div>
                 <!-- Navbar ================================================== -->
@@ -35,7 +41,7 @@
                         <form class="form-inline navbar-search" method="post" action="products.html" >
                             <input id="srchFld" class="srchTxt" type="text" />
 
-                            <button type="submit" id="submitButton" class="btn btn-primary">Go</button>
+                            <button type="submit" id="submitButton" class="btn btn-primary">Ir</button>
                         </form>
                         <ul id="topMenu" class="nav pull-right">
                             <li class=""><a href="#">Nueva Publicación</a></li>
@@ -49,17 +55,17 @@
                                         <h3>Iniciar Sesión</h3>
                                     </div>
                                     <div class="modal-body">
-                                        <form class="form-horizontal loginFrm">
+                                        <form  class="form-horizontal loginFrm" method="POST" action="doLogin.php" >
                                             <div class="control-group">								
                                                 <input type="text" id="inputEmail" placeholder="Email">
                                             </div>
                                             <div class="control-group">
                                                 <input type="password" id="inputPassword" placeholder="Password">
                                             </div>
-                                            
+                                            <button type="submit" class="btn btn-success">Iniciar sesión</button>
+                                            <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
                                         </form>		
-                                        <button type="submit" class="btn btn-success">Iniciar sesión</button>
-                                        <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+
                                     </div>
                                 </div>
                             </li>
@@ -79,115 +85,67 @@
                         <ul id="sideManu" class="nav nav-tabs nav-stacked">
                             <li class="subMenu open"><a> TIPO DE PUBLICACIÓN</a>
                                 <ul>
-                                    <li><a class="active"><i class="icon-chevron-right"></i>Todas </a></li>
-                                    <li><i class="icon-chevron-right"></i>Encontrados</li>
+                                    <li><a class="active"><i class="icon-chevron-right"></i>Encontrados </a></li>
                                     <li><i class="icon-chevron-right"></i>Perdidos</li>
                                 </ul>
                             </li>
                             <li class="subMenu"><a> ESPECIE</a>
                                 <ul style="display:none">
-                                    <li><a class="active"><i class="icon-chevron-right"></i>Perros </a></li>
-                                    <li><i class="icon-chevron-right"></i>Gatos</li>
-                                    <li><i class="icon-chevron-right"></i>Conejos</li>												
+                                    {foreach from=$especies item=esp}
+                                        <li><i class="icon-chevron-right"></i>{$esp.nombre}</li>
+                                        {/foreach}
                                 </ul>
                             </li>
                             <li class="subMenu"><a> RAZAS</a>
                                 <ul style="display:none">
-                                    <li><a class="active"><i class="icon-chevron-right"></i>Caniche </a></li>
-                                    <li><i class="icon-chevron-right"></i>Bull Terrier</li>
-                                    <li><i class="icon-chevron-right"></i>Bull Mastif</li>
+                                    {foreach from=$razas item=raz}
+                                        <li><i class="icon-chevron-right"></i>{$raz.nombre}</li>
+                                        {/foreach}
                                 </ul>
                             </li>
+
                             <li class="subMenu"><a> BARRIO</a>
                                 <ul style="display:none">
-                                    <li><a class="active"><i class="icon-chevron-right"></i>Cerro </a></li>
-                                    <li><i class="icon-chevron-right"></i>Aguada</li>
-                                    <li><i class="icon-chevron-right"></i>Colón</li>												
+                                    {foreach from=$barrios item=bar}
+                                        <li><i class="icon-chevron-right"></i>{$bar.nombre}</li>
+                                        {/foreach}											
                                 </ul>
                             </li>
-                            
+
                         </ul>
                         <br/>
-                       
+
 
                     </div>
                     <!-- Sidebar end=============================================== -->
 
-                    <h4>Publicaciones recientes </h4>
+                    <h4>Publicaciones</h4>
+
                     <ul class="thumbnails">
-                        <li class="span3">
-                            <div class="thumbnail">
-                                <a  href="#"><img src="themes/images/products/6.jpg" alt=""/></a>
-                                <div class="caption">
-                                    <h5>Título de publicación</h5>
-                                    <p> 
-                                        Descripción de hasta 150 caracteres. 
-                                    </p>
+
+                        {foreach from=$publicaciones item=pub}
+                            <li class="span3">
+                                <div class="thumbnail">
+                                    <a  href="#"><img src="themes/images/products/1.jpg" alt="Foto de Publicacion"/></a>
+                                    <div class="caption">
+                                        <h5>{$pub.titulo}</h5>
+                                        <p> {$pub.descripcion}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                        <li class="span3">
-                            <div class="thumbnail">
-                                <a  href="#"><img src="themes/images/products/6.jpg" alt=""/></a>
-                                <div class="caption">
-                                    <h5>Título de publicación</h5>
-                                    <p> 
-                                        Descripción de hasta 150 caracteres. 
-                                    </p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="span3">
-                            <div class="thumbnail">
-                                <a  href="#"><img src="themes/images/products/6.jpg" alt=""/></a>
-                                <div class="caption">
-                                    <h5>Título de publicación</h5>
-                                    <p> 
-                                        Descripción de hasta 150 caracteres. 
-                                    </p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="span3">
-                            <div class="thumbnail">
-                                <a  href="#"><img src="themes/images/products/6.jpg" alt=""/></a>
-                                <div class="caption">
-                                    <h5>Título de publicación</h5>
-                                    <p> 
-                                        Descripción de hasta 150 caracteres. 
-                                    </p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="span3">
-                            <div class="thumbnail">
-                                <a  href="#"><img src="themes/images/products/6.jpg" alt=""/></a>
-                                <div class="caption">
-                                    <h5>Título de publicación</h5>
-                                    <p> 
-                                        Descripción de hasta 150 caracteres. 
-                                    </p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="span3">
-                            <div class="thumbnail">
-                                <a  href="#"><img src="themes/images/products/6.jpg" alt=""/></a>
-                                <div class="caption">
-                                    <h5>Título de publicación</h5>
-                                    <p> 
-                                        Descripción de hasta 150 caracteres. 
-                                    </p>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>	
+                            </li>
+                        {/foreach}
+
+
+                    </ul>
+
 
                 </div>
             </div>
         </div>
         <!-- Placed at the end of the document so the pages load faster ============================================= -->
         <script src="themes/js/jquery.js" type="text/javascript"></script>
+        <script src="themes/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="themes/js/bootshop.js"></script>
         <script src="themes/js/jquery.lightbox-0.5.js"></script>
 
     </body>
