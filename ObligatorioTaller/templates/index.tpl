@@ -8,7 +8,7 @@
         <meta name="author" content="">
 
         <!-- Bootstrap style --> 
-        <link id="callCss" rel="stylesheet" href="themes/bootshop/bootstrap.min.css" media="screen"/>
+        <link id="callCss" rel="stylesheet" href="themes/css/bootstrap.min.css" media="screen"/>
         <link href="themes/css/base.css" rel="stylesheet" media="screen"/>
         <!-- Bootstrap style responsive -->	
         <link href="themes/css/bootstrap-responsive.min.css" rel="stylesheet"/>
@@ -46,7 +46,7 @@
                         <ul id="topMenu" class="nav pull-right">
                             <li class=""><a href="#">Nueva Publicación</a></li>
                             <li class=""><a href="#">Estadisticas</a></li>
-                            <li class=""><a href="#">Registrarse</a></li>
+                            <li class=""><a href="register.php">Registrarse</a></li>
                             <li class="">
                                 <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success">Login</span></a>
                                 <div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="false" >
