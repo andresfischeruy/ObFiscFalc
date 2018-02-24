@@ -16,6 +16,8 @@
 
         <style type="text/css" id="enject"></style>
     </head>
+    
+    
     <body>
         <div id="header">
             <div class="container">
@@ -23,7 +25,7 @@
                     {if (!isset($usuario))}
                         <div class="span6">Bienvenido<strong> usuario</strong></div>
                     {else}
-                        <div class="span6">Bienvenido<strong> {$usuario.usuario}</strong></div>
+                        <div class="span6">Bienvenido<strong> {$usuario.nombre}</strong></div>
                         <a href="doLogout.php">Salir</a>
                     {/if}
 
@@ -54,19 +56,26 @@
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                         <h3>Iniciar Sesión</h3>
                                     </div>
+                                    
+                                    
                                     <div class="modal-body">
-                                        <form  class="form-horizontal loginFrm" method="POST" action="doLogin.php" >
+                                        <form  method="POST" action="doLogin.php" >
                                             <div class="control-group">								
-                                                <input type="text" id="inputEmail" placeholder="Email">
+                                                <input type="text" id="inputEmail" placeholder="Email" name="usuario">
                                             </div>
                                             <div class="control-group">
-                                                <input type="password" id="inputPassword" placeholder="Password">
+                                                <input type="password" id="inputPassword" placeholder="Password" name="clave">
                                             </div>
-                                            <button type="submit" class="btn btn-success">Iniciar sesión</button>
+                                            
+                                            <input type="submit" class="btn btn-success" value="Iniciar sesión" >
                                             <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
                                         </form>		
 
                                     </div>
+                                 
+                                
+                                
+                                
                                 </div>
                             </li>
                         </ul>
@@ -85,8 +94,9 @@
                         <ul id="sideManu" class="nav nav-tabs nav-stacked">
                             <li class="subMenu open"><a> TIPO DE PUBLICACIÓN</a>
                                 <ul>
-                                    <li><a class="active"><i class="icon-chevron-right"></i>Encontrados </a></li>
-                                    <li><i class="icon-chevron-right"></i>Perdidos</li>
+                                    <li><a class="active" href="index.php?tipo=E"><i class="icon-chevron-right"></i>Encontrados </a></li>
+                                    <li><a href="index.php?tipo=P"><i class="icon-chevron-right"></i>Perdidos </a></li>
+                                   
                                 </ul>
                             </li>
                             <li class="subMenu"><a> ESPECIE</a>

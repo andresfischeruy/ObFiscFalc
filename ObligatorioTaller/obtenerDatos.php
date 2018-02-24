@@ -54,13 +54,13 @@ function obtenerPublicacionPorTipo($tip) {
 
 ////////////////////////////////////////
 //Login de Usuario
-function login($mail, $cont) {
+function login($usuario, $clave) {
     
     $cn = getConexion();
     $cn->consulta(
-            "select * from usuarios where email=:correo and password=:pass", array(
-        array("correo", $mail, 'string'),
-        array("pass", $cont, 'string')
+            "select * from usuarios where email=:nom and pass=:cla", array(
+        array("nom", $usuario, 'string'),
+        array("cla", $clave, 'string')
     ));
     
     $usr = $cn->siguienteRegistro();
