@@ -5,6 +5,11 @@ require_once 'libs/Smarty.class.php';
 
 $tipoPubli = 'E';
 
+if (isset($_GET['tipo'])) {
+    $tipoPubli = $_GET['tipo'];
+}
+
+
 $miSmarty = getSmarty();
 
 
