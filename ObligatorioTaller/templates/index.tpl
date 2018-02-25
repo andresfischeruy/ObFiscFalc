@@ -102,7 +102,7 @@
                             <li class="subMenu"><a> ESPECIE</a>
                                 <ul style="display:none">
                                     {foreach from=$especies item=esp}
-                                        <li><i class="icon-chevron-right"></i>{$esp.nombre}</li>
+                                        <li><a href="index.php?especie={$esp.id}" class="icon-chevron-right"></a>{$esp.nombre}</li>
                                         {/foreach}
                                 </ul>
                             </li>
