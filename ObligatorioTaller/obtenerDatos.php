@@ -161,7 +161,7 @@ function devolverIdUsuario($usuario){
         array("usuario", $usuario, 'string')
     ));
     $idUsuario = $cn->siguienteRegistro();
-    return $idUsuario["id"];
+    return $idUsuario['id'];
 }
 
 // Validar password

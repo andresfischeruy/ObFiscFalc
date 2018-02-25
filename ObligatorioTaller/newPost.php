@@ -21,7 +21,18 @@ $barrioID = (int)devolverIdBarrio($barrio);
 $abierto = 1;
 $usuario = 13;
 
-guardarPublicacion($titulo, $descripcion, $tipo, $especieID, $razaID, $barrioID, $abierto, $usuario);
+
+
+if(strlen($titulo) == 0 || strlen($descripcion) == 0){
+    $miSmarty->assign("tipoAlerta", "alert alert-warning");
+    $miSmarty->assign("mensajeAlerta", "(*) Campos requeridos");
+} else {
+    $miSmarty->assign("tipoAlerta", "alert alert-success");
+    $miSmarty->assign("mensajeAlerta", "Registro exitoso.");
+    guardarPublicacion($titulo, $descripcion, $tipo, $especieID, $razaID, $barrioID, $abierto, $usuario);
+}
+
+
 
 $miSmarty->display("nuevaPublicacion.tpl");
 

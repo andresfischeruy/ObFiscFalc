@@ -76,10 +76,10 @@
                         <form class="form-horizontal" method="POST" action="newPost.php">
                             <fieldset>
                                 <div class="control-group">
-                                    <input type="text" name ="titulo" placeholder="Título de la publicación" class="input-xlarge"/>
+                                    <input type="text" name ="titulo" placeholder="* Titulo de la publicacion" class="input-xlarge"/>
                                 </div>
                                 <div class="control-group">
-                                    <select name="comboEspecies">
+                                    *Especie <select name="comboEspecies">
                                         {foreach from=$especies item=esp}
                                             <option value={$esp.nombre}> {$esp.nombre} </option>
                                         {/foreach}	
@@ -87,26 +87,26 @@
 
                                 </div>
                                 <div class="control-group">
-                                    <select name="comboRazas">
-                                            {foreach from=$razas item=raz}
-                                                    <option value={$raz.nombre}> {$raz.nombre} </option>
-                                            {/foreach}	
+                                    *Raza <select name="comboRazas">
+                                        {foreach from=$razas item=raz}
+                                            <option value={$raz.nombre}> {$raz.nombre} </option>
+                                        {/foreach}	
                                     </select>
                                 </div>
                                 <div class="control-group">
-                                    <select name="comboBarrios">
+                                    *Barrio <select name="comboBarrios">
                                         {foreach from=$barrios item=bar}
                                             <option value={$bar.nombre}> {$bar.nombre} </option>
                                         {/foreach}	
                                     </select>
                                 </div>
                                 <div class="control-group">
-                                    <textarea rows="3" id="textarea" name="descripcion" placeholder="Descripción" class="input-xlarge"></textarea>
+                                    <textarea rows="3" id="textarea" name="descripcion" placeholder="* Descripción" class="input-xlarge"></textarea>
                                 </div>
 
                                 <fieldset>
                                     <label>
-                                        <input type="radio" name = "tipo" value = "Perdido"> Perdido
+                                        <input type="radio" name = "tipo" value = "Perdido" checked = true> Perdido
                                     </label>
                                     <label>
                                         <input type="radio" name = "tipo" value = "Encontrado"> Encontrado
@@ -116,17 +116,24 @@
                                 <button id = "btnPublicar" class="btn btn-large" type="submit">Publicar</button>
 
                             </fieldset>
+
+                            <div  class='{$tipoAlerta}'>
+                                <button type='button' class='close' data-dismiss='alert'>×</button>
+                                {$mensajeAlerta}
+                            </div>
                         </form>
                     </div>
 
                     <div class="span4">
                         <h4>Agregar imágenes</h4>
-                        <h5> Monday - Friday</h5>
-                        <p>09:00am - 09:00pm<br/><br/></p>
-                        <h5>Saturday</h5>
-                        <p>09:00am - 07:00pm<br/><br/></p>
-                        <h5>Sunday</h5>
-                        <p>12:30pm - 06:00pm<br/><br/></p>
+                        <div>
+                            <form name="imagenes" id="imagenes" method="post" action="" enctype="multipart/form-data">
+                                <input type="file" class="form-control" id="archivo[]" name="archivo[]" multiple="">
+                                <button type="submit" class="btn btn-primary">Cargar</button>
+
+                            </form>
+
+                        </div>
                     </div>
 
                 </div>
