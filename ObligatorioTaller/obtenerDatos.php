@@ -56,7 +56,7 @@ function login($usuario, $clave) {
 
     $cn = getConexion();
     $cn->consulta(
-            "select * from usuarios where email=:nom and pass=:cla", array(
+            "select * from usuarios where email=:nom and password=:cla", array(
         array("nom", $usuario, 'string'),
         array("cla", $clave, 'string')
     ));
@@ -155,13 +155,13 @@ function devolverIdBarrio($barrio){
 }
 
 function devolverIdUsuario($usuario){
-    $cn = getConexion();
+ /*   $cn = getConexion();
     $cn->consulta(
             "select id from usuarios where nombre=:usuario", array(
         array("usuario", $usuario, 'string')
     ));
-    $idUsuario = $cn->siguienteRegistro();
-    return $idUsuario['id'];
+    $idUsuario = $cn->siguienteRegistro();*/
+    return $usuario['id'];
 }
 
 // Validar password

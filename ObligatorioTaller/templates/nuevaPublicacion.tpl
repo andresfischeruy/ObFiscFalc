@@ -19,7 +19,12 @@
         <div id="header">
             <div class="container">
                 <div id="welcomeLine" class="row">
-                    <div class="span6">Bienvenido<strong> Usuario</strong></div>
+                     {if (!isset($usuario))}
+                        <div class="span6">Bienvenido<strong> usuario</strong></div>
+                    {else}
+                        <div class="span6">Bienvenido<strong> {$usuario.nombre}</strong></div>
+                        <a href="doLogout.php">Salir</a>
+                    {/if}
 
                 </div>
                 <!-- Navbar ================================================== -->
@@ -30,7 +35,7 @@
                         <span class="icon-bar"></span>
                     </a>
                     <div class="navbar-inner">
-                        <a class="brand" href="index.html"><img src="themes/images/logo.png" alt="Bootsshop"/></a>
+                        <a class="brand" href="index.php"><img src="themes/images/logo.png" alt="Bootsshop"/></a>
 
                         <ul id="topMenu" class="nav pull-right">
                             <li class=""><a href="index.php">Home</a></li>

@@ -19,7 +19,8 @@ $razaID = (int)devolverIdRaza($raza);
 $barrio = $_POST['comboBarrios'];
 $barrioID = (int)devolverIdBarrio($barrio);
 $abierto = 1;
-$usuario = 13;
+$usuario = usuarioLogueado();
+$usuarioID = (int) devolverIdUsuario($usuario);
 
 
 
@@ -29,7 +30,7 @@ if(strlen($titulo) == 0 || strlen($descripcion) == 0){
 } else {
     $miSmarty->assign("tipoAlerta", "alert alert-success");
     $miSmarty->assign("mensajeAlerta", "Registro exitoso.");
-    guardarPublicacion($titulo, $descripcion, $tipo, $especieID, $razaID, $barrioID, $abierto, $usuario);
+    guardarPublicacion($titulo, $descripcion, $tipo, $especieID, $razaID, $barrioID, $abierto, $usuarioID);
 }
 
 
