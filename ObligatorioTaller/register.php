@@ -20,7 +20,7 @@ if(existeEmail($email)){
     $miSmarty->assign("mensajeAlerta", "(*) Campos requeridos");
 } else if (!validarPass($password)) {
     $miSmarty->assign("tipoAlerta", "alert alert-danger");
-    $miSmarty->assign("mensajeAlerta", "Complejidad de contraseña esperada: 8 caracteres, al menos un numero y al menos una letra.");
+    $miSmarty->assign("mensajeAlerta", "Complejidad de contraseña esperada: al menos 8 caracteres, letras y numeros.");
 } else {
     $miSmarty->assign("tipoAlerta", "alert alert-success");
     $miSmarty->assign("mensajeAlerta", "Registro exitoso.");

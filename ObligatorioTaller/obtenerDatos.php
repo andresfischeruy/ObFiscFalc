@@ -99,7 +99,7 @@ function guardarUsuario($nombre, $email, $password) {
 // Validar password
 
 function validarPass($clave) {
-    return strlen($clave) == 8 && preg_match('`[a-zA-Z]`', $clave) && preg_match('`[0-9]`', $clave);
+    return strlen($clave) > 8 && preg_match('`[a-zA-Z]`', $clave) && preg_match('`[0-9]`', $clave);
 }
 
 //Controlar email repetido
