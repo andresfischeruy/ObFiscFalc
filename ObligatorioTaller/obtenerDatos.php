@@ -11,6 +11,7 @@ function getConexion() {
     $cn->conectar();
     return $cn;
 }
+
 ////////////////////////////////////////
 //Carga de elementos del SideBar
 function obtenerEspecies() {
@@ -35,7 +36,7 @@ function obtenerBarrios() {
 //Carga de Publicaciones
 function obtenerTodasLasPublicaciones() {
     $cn = getConexion();
-    $cn->consulta("select * from publicaciones");      
+    $cn->consulta("select * from publicaciones");
     return $cn->restantesRegistros();
 }
 
@@ -49,28 +50,34 @@ function obtenerPublicacionPorTipo($tip) {
     return $cn->restantesRegistros();
 }
 
+function obtenerPublicacionesAbiertasPorUsuario($usr) {
+    $cn = getConexion();
+    $cn->consulta(
+            "select titulo from publicaciones where usuario_id=:usr AND abierto=1", array(
+        array("usr", $usr, 'int')
+    ));
 
-
+    return $cn->restantesRegistros();
+}
 
 ////////////////////////////////////////
 //Login de Usuario
 function login($usuario, $clave) {
-    
+
     $cn = getConexion();
     $cn->consulta(
-            "select * from usuarios where email=:nom and pass=:cla", array(
+            "select * from usuarios where email=:nom and password=:cla", array(
         array("nom", $usuario, 'string'),
         array("cla", $clave, 'string')
     ));
-    
+
     $usr = $cn->siguienteRegistro();
-    if($usr!=null) {
+    if ($usr != null) {
         session_start();
-        $_SESSION["usuario"] = $usr;        
+        $_SESSION["usuario"] = $usr;
     }
-    
+
     return $usr;
-    
 }
 
 function usuarioLogueado() {
@@ -80,6 +87,124 @@ function usuarioLogueado() {
     }
 
     return null;
+}
+
+//Alta usuario
+function guardarUsuario($nombre, $email, $password) {
+
+    $sql = "INSERT INTO usuarios (id, email, nombre, password)";
+    $sql .= " VALUES (:id, :email, :nombre, :pass)";
+
+
+    $cn = getConexion();
+    $cn->consulta($sql, array(
+        array("id", '', 'int'),
+        array("email", $email, 'string'),
+        array("nombre", $nombre, 'string'),
+        array("pass", $password, 'string')
+            )
+    );
+}
+
+//Alta publicacion
+function guardarPublicacion($titulo, $descripcion, $tipo, $especieid, $raza, $barrio, $abierto, $usuario) {
+
+    $sql = "INSERT INTO publicaciones (id, titulo, descripcion, tipo, especie_id, raza_id, barrio_id, abierto, usuario_id, exitoso, latitud, longitud)";
+    $sql .= " VALUES (:id, :titulo, :descripcion, :tipo, :especie_id, :raza_id, :barrio_id, :abierto, :usuario_id, :exitoso, :latitud, :longitud)";
+
+
+    $cn = getConexion();
+    $cn->consulta($sql, array(
+        array("id", '', 'int'),
+        array("titulo", $titulo, 'string'),
+        array("descripcion", $descripcion, 'string'),
+        array("tipo", $tipo, 'char'),
+        array("especie_id", $especieid, 'int'),
+        array("raza_id", $raza, 'int'),
+        array("barrio_id", $barrio, 'int'),
+        array("abierto", $abierto, 'bit'),
+        array("usuario_id", $usuario, 'int'),
+        array("exitoso", '', 'bit'),
+        array("latitud", '', 'decimal'),
+        array("longitud", '', 'decimal')
+            )
+    );
+}
+
+//Cerrar publicacion
+
+function cerrarPublicacion($idPubli, $exito) {
+
+    $sql = "UPDATE publicaciones SET abierto=0, exitoso=:exitoso";
+    $sql .= " where id=:id";
+    $cn = getConexion();
+    $cn->consulta($sql, array(
+                array("id", $idPubli, 'int'),
+                array("exitoso", $exito, 'int')));
+}
+
+//Devolver id
+
+function devolverIdEspecie($especie) {
+    $cn = getConexion();
+    $cn->consulta(
+            "select id from especies where nombre=:especie", array(
+        array("especie", $especie, 'string')
+    ));
+    $idEspecie = $cn->siguienteRegistro();
+    return $idEspecie['id'];
+}
+
+function devolverIdRaza($raza) {
+    $cn = getConexion();
+    $cn->consulta(
+            "select id from razas where nombre=:raza", array(
+        array("raza", $raza, 'string')
+    ));
+    $idRaza = $cn->siguienteRegistro();
+    return $idRaza['id'];
+}
+
+function devolverIdBarrio($barrio) {
+    $cn = getConexion();
+    $cn->consulta(
+            "select id from barrios where nombre=:barrio", array(
+        array("barrio", $barrio, 'string')
+    ));
+    $idBarrio = $cn->siguienteRegistro();
+    return $idBarrio['id'];
+}
+
+function devolverIdUsuario($usuario) {
+    return $usuario['id'];
+}
+
+function devolverIdPublicacion($tituloPublicacion) {
+    $cn = getConexion();
+    $cn->consulta(
+            "select id from publicaciones where titulo=:titulo", array(
+        array("titulo", $tituloPublicacion, 'string')
+    ));
+    $idPubli = $cn->siguienteRegistro();
+    return $idPubli['id'];
+}
+
+// Validar password
+
+function validarPass($clave) {
+    return strlen($clave) > 8 && preg_match('`[a-zA-Z]`', $clave) && preg_match('`[0-9]`', $clave);
+}
+
+//Controlar email repetido
+
+function existeEmail($email) {
+    $cn = getConexion();
+    $cn->consulta(
+            "select email from usuarios where email=:email", array(
+        array("email", $email, 'string')
+    ));
+    $usuarioEmail = $cn->siguienteRegistro();
+    return $usuarioEmail != null;
 }
 
 //Smarty
