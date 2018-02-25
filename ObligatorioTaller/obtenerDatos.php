@@ -139,11 +139,9 @@ function cerrarPublicacion($idPubli, $exito) {
     $sql .= " where id=:id";
     $cn = getConexion();
     $cn->consulta($sql, array(
-        array("id", $idPubli, 'int'),
-        array("exitoso", $exito, 'int')));
+                array("id", $idPubli, 'int'),
+                array("exitoso", $exito, 'int')));
 }
-
-
 
 //Devolver id
 

@@ -109,10 +109,7 @@
 
                             </fieldset>
 
-                            <div  class='{$tipoAlerta}'>
-                                <button type='button' class='close' data-dismiss='alert'>×</button>
-                                {$mensajeAlerta}
-                            </div>
+                            
                         </form>
                     </div>
 
