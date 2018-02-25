@@ -39,14 +39,14 @@
                         <span class="icon-bar"></span>
                     </a>
                     <div class="navbar-inner">
-                        <a class="brand" href="index.html"><img src="themes/images/logo.png" alt="Avisos "/></a>
+                        <a class="brand" href="index.php"><img src="themes/images/logo.png" alt="Avisos "/></a>
                         <form class="form-inline navbar-search" method="post" action="products.html" >
                             <input id="srchFld" class="srchTxt" type="text" />
 
                             <button type="submit" id="submitButton" class="btn btn-primary">Ir</button>
                         </form>
                         <ul id="topMenu" class="nav pull-right">
-                            <li class=""><a href="#">Nueva Publicación</a></li>
+                            <li class=""><a href="newPost.php">Nueva Publicación</a></li>
                             <li class=""><a href="#">Estadisticas</a></li>
                             <li class=""><a href="register.php">Registrarse</a></li>
                             <li class="">
