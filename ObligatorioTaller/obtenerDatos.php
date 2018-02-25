@@ -50,8 +50,6 @@ function obtenerPublicacionPorTipo($tip) {
 }
 
 
-
-
 ////////////////////////////////////////
 //Login de Usuario
 function login($usuario, $clave) {
@@ -82,6 +80,23 @@ function usuarioLogueado() {
     return null;
 }
 
+
+//Alta usuario
+function guardarUsuario($nombre, $email, $password) {
+
+     $sql = "INSERT INTO usuarios (id, email, nombre, password)";
+     $sql .= " VALUES (:id, :email, :nombre, :pass)";
+    
+    
+    $cn = getConexion();
+    $cn->consulta( $sql, array(
+        array("id", '', 'int'),
+        array("email", $email, 'string'),
+        array("nombre", $nombre, 'string'),
+        array("pass", $password, 'string')
+            )
+    );
+}
 //Smarty
 function getSmarty() {
     $miSmarty = new Smarty();
