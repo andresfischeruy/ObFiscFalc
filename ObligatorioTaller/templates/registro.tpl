@@ -96,8 +96,10 @@
                                 </div>
                             </div>	  
 
-                            {$divAlerta}
-
+                            <div  class='{$tipoAlerta}'>
+                                <button type='button' class='close' data-dismiss='alert'>×</button>
+                                {$mensajeAlerta}
+                            </div>
                             <div class="control-group">
                                 <div class="controls">
                                     <input type="hidden" name="email_create" value="1">
