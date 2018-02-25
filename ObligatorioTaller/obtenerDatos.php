@@ -99,7 +99,24 @@ function guardarUsuario($nombre, $email, $password) {
 // Validar password
 
 function validarPass($clave) {
-    return strlen($clave) == 8 && preg_match('`[a-zA-Z]`', $clave) && preg_match('`[0-9]`', $clave) ;
+    return strlen($clave) == 8 && preg_match('`[a-zA-Z]`', $clave) && preg_match('`[0-9]`', $clave);
+}
+
+//Controlar email repetido
+
+function existeEmail($email) {
+    $cn = getConexion();
+    $cn->consulta(
+            "select * from usuarios where email=:email", array(
+        array("email", $email, 'string')
+    ));
+
+    $usr = $cn->siguienteRegistro();
+    if ($usr != null) {
+        return true;
+    }
+
+    return false;
 }
 
 //Smarty

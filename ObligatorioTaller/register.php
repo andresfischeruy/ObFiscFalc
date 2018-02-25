@@ -11,7 +11,11 @@ $password = $_POST["password"];
 
 $miSmarty = getSmarty();
 
-if (strlen($password) == 0 || strlen($nombre) == 0 || strlen($email) == 0) {
+
+if(existeEmail($email)){
+     $miSmarty->assign("tipoAlerta", "alert alert-danger");
+    $miSmarty->assign("mensajeAlerta", "E-mail ya ingresado.");
+}else if (strlen($password) == 0 || strlen($nombre) == 0 || strlen($email) == 0) {
     $miSmarty->assign("tipoAlerta", "alert alert-warning");
     $miSmarty->assign("mensajeAlerta", "(*) Campos requeridos");
 } else if (!validarPass($password)) {
