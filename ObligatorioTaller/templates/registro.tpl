@@ -21,7 +21,7 @@
         <div id="header">
             <div class="container">
                 <div id="welcomeLine" class="row">
-                      {if (!isset($usuario))}
+                    {if (!isset($usuario))}
                         <div class="span6">Bienvenido<strong> usuario</strong></div>
                     {else}
                         <div class="span6">Bienvenido<strong> {$usuario.nombre}</strong></div>
@@ -37,15 +37,12 @@
                         <span class="icon-bar"></span>
                     </a>
                     <div class="navbar-inner">
-                        <a class="brand" href="index.php"><img src="themes/images/logo.png" alt="Bootsshop"/></a>
+                        <a class="brand" href="index.php"><img src="themes/images/logo.png" alt="Avisos mascoteros"/></a>
 
                         <ul id="topMenu" class="nav pull-right">
                             <li class=""><a href="index.php">Home</a></li> 
-                            <li class=""><a href="#">Nueva Publicación</a></li>
-                            <li class=""><a href="#">Estadisticas</a></li>
-
                             <li class="">
-                                <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success">Login</span></a>
+
                                 <div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="false" >
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>

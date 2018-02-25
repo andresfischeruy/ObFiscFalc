@@ -16,8 +16,8 @@
 
         <style type="text/css" id="enject"></style>
     </head>
-    
-    
+
+
     <body>
         <div id="header">
             <div class="container">
@@ -26,10 +26,7 @@
                         <div class="span6">Bienvenido<strong> usuario</strong></div>
                     {else}
                         <div class="span6">Bienvenido<strong> {$usuario.nombre}</strong></div>
-                        <a href="doLogout.php">Salir</a>
                     {/if}
-
-
                 </div>
                 <!-- Navbar ================================================== -->
                 <div id="logoArea" class="navbar">
@@ -39,44 +36,51 @@
                         <span class="icon-bar"></span>
                     </a>
                     <div class="navbar-inner">
-                        <a class="brand" href="index.php"><img src="themes/images/logo.png" alt="Avisos "/></a>
+                        <a class="brand" href="index.php"><img src="themes/images/logo.png" alt="Avisos Mascoteros"/></a>
                         <form class="form-inline navbar-search" method="post" action="products.html" >
                             <input id="srchFld" class="srchTxt" type="text" />
 
                             <button type="submit" id="submitButton" class="btn btn-primary">Ir</button>
                         </form>
                         <ul id="topMenu" class="nav pull-right">
-                            <li class=""><a href="newPost.php">Nueva Publicación</a></li>
-                            <li class=""><a href="#">Estadisticas</a></li>
-                            <li class=""><a href="register.php">Registrarse</a></li>
-                            <li class="">
-                                <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success">Login</span></a>
-                                <div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="false" >
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                        <h3>Iniciar Sesión</h3>
-                                    </div>
-                                    
-                                    
-                                    <div class="modal-body">
-                                        <form  method="POST" action="doLogin.php" >
-                                            <div class="control-group">								
-                                                <input type="text" id="inputEmail" placeholder="Email" name="usuario">
-                                            </div>
-                                            <div class="control-group">
-                                                <input type="password" id="inputPassword" placeholder="Password" name="clave">
-                                            </div>
-                                            
-                                            <input type="submit" class="btn btn-success" value="Iniciar sesión" >
-                                            <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
-                                        </form>		
 
-                                    </div>
-                                 
-                                
-                                
-                                
+
+                            <li class="">
+                                {if (!isset($usuario))}
+                                <li class=""><a href="register.php">Registrarse</a></li>
+                                <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success">Login</span></a>
+                            {else}
+                                <li class=""><a href="newPost.php">Nueva Publicación</a></li>
+                                <li class=""><a href="#">Estadisticas</a></li>
+                                <a href="doLogout.php" role="button" style="padding-right:0"><span class="btn btn-large btn-success">Salir</span></a>
+                            {/if}
+
+                            <div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="false" >
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    <h3>Iniciar Sesión</h3>
                                 </div>
+
+
+                                <div class="modal-body">
+                                    <form  method="POST" action="doLogin.php" >
+                                        <div class="control-group">								
+                                            <input type="text" id="inputEmail" placeholder="Email" name="usuario">
+                                        </div>
+                                        <div class="control-group">
+                                            <input type="password" id="inputPassword" placeholder="Password" name="clave">
+                                        </div>
+
+                                        <input type="submit" class="btn btn-success" value="Iniciar sesión" >
+                                        <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+                                    </form>		
+
+                                </div>
+
+
+
+
+                            </div>
                             </li>
                         </ul>
                     </div>
@@ -96,7 +100,7 @@
                                 <ul>
                                     <li><a class="active" href="index.php?tipo=E"><i class="icon-chevron-right"></i>Encontrados </a></li>
                                     <li><a href="index.php?tipo=P"><i class="icon-chevron-right"></i>Perdidos </a></li>
-                                   
+
                                 </ul>
                             </li>
                             <li class="subMenu"><a> ESPECIE</a>
