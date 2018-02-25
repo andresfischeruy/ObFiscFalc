@@ -13,7 +13,7 @@ $miSmarty = getSmarty();
 
 
 if(existeEmail($email)){
-     $miSmarty->assign("tipoAlerta", "alert alert-danger");
+    $miSmarty->assign("tipoAlerta", "alert alert-danger");
     $miSmarty->assign("mensajeAlerta", "E-mail ya ingresado.");
 }else if (strlen($password) == 0 || strlen($nombre) == 0 || strlen($email) == 0) {
     $miSmarty->assign("tipoAlerta", "alert alert-warning");
@@ -25,6 +25,7 @@ if(existeEmail($email)){
     $miSmarty->assign("tipoAlerta", "alert alert-success");
     $miSmarty->assign("mensajeAlerta", "Registro exitoso.");
     guardarUsuario($nombre, $email, $password);
+    
 }
 
 

@@ -107,16 +107,11 @@ function validarPass($clave) {
 function existeEmail($email) {
     $cn = getConexion();
     $cn->consulta(
-            "select * from usuarios where email=:email", array(
+            "select email from usuarios where email=:email", array(
         array("email", $email, 'string')
     ));
-
-    $usr = $cn->siguienteRegistro();
-    if ($usr != null) {
-        return true;
-    }
-
-    return false;
+    $usuarioEmail = $cn->siguienteRegistro();
+    return $usuarioEmail != null;
 }
 
 //Smarty

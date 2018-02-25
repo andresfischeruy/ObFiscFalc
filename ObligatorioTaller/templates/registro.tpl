@@ -35,7 +35,7 @@
                         <a class="brand" href="index.html"><img src="themes/images/logo.png" alt="Bootsshop"/></a>
 
                         <ul id="topMenu" class="nav pull-right">
-                            <li class=""><a href="#">Home</a></li> 
+                            <li class=""><a href="index.php">Home</a></li> 
                             <li class=""><a href="#">Nueva Publicación</a></li>
                             <li class=""><a href="#">Estadisticas</a></li>
 
