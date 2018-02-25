@@ -96,15 +96,7 @@
                                 </div>
                             </div>	  
 
-
-                            <div class="alert alert-block alert-error fade in">
-                                <button type="button" class="close" data-dismiss="alert">×</button>
-                                La contraseña debe tener 8 caracteres, al menos una letra y al menos un número
-                            </div>	
-
-
-
-                            <p><sup>*</sup>Campos requeridos	</p>
+                            {$divAlerta}
 
                             <div class="control-group">
                                 <div class="controls">
@@ -120,16 +112,16 @@
             </div>
         </div>
 
-    <!-- MainBody End ============================= -->
-   
-    <!-- Placed at the end of the document so the pages load faster ============================================= -->
-    <script src="themes/js/jquery.js" type="text/javascript"></script>
-    <script src="themes/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="themes/js/google-code-prettify/prettify.js"></script>
+        <!-- MainBody End ============================= -->
 
-    <script src="themes/js/bootshop.js"></script>
-    <script src="themes/js/jquery.lightbox-0.5.js"></script>
+        <!-- Placed at the end of the document so the pages load faster ============================================= -->
+        <script src="themes/js/jquery.js" type="text/javascript"></script>
+        <script src="themes/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="themes/js/google-code-prettify/prettify.js"></script>
 
-  
-</body>
+        <script src="themes/js/bootshop.js"></script>
+        <script src="themes/js/jquery.lightbox-0.5.js"></script>
+
+
+    </body>
 </html>

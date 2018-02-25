@@ -11,6 +11,7 @@ function getConexion() {
     $cn->conectar();
     return $cn;
 }
+
 ////////////////////////////////////////
 //Carga de elementos del SideBar
 function obtenerEspecies() {
@@ -35,7 +36,7 @@ function obtenerBarrios() {
 //Carga de Publicaciones
 function obtenerTodasLasPublicaciones() {
     $cn = getConexion();
-    $cn->consulta("select * from publicaciones");      
+    $cn->consulta("select * from publicaciones");
     return $cn->restantesRegistros();
 }
 
@@ -49,26 +50,24 @@ function obtenerPublicacionPorTipo($tip) {
     return $cn->restantesRegistros();
 }
 
-
 ////////////////////////////////////////
 //Login de Usuario
 function login($usuario, $clave) {
-    
+
     $cn = getConexion();
     $cn->consulta(
             "select * from usuarios where email=:nom and pass=:cla", array(
         array("nom", $usuario, 'string'),
         array("cla", $clave, 'string')
     ));
-    
+
     $usr = $cn->siguienteRegistro();
-    if($usr!=null) {
+    if ($usr != null) {
         session_start();
-        $_SESSION["usuario"] = $usr;        
+        $_SESSION["usuario"] = $usr;
     }
-    
+
     return $usr;
-    
 }
 
 function usuarioLogueado() {
@@ -80,16 +79,15 @@ function usuarioLogueado() {
     return null;
 }
 
-
 //Alta usuario
 function guardarUsuario($nombre, $email, $password) {
 
-     $sql = "INSERT INTO usuarios (id, email, nombre, password)";
-     $sql .= " VALUES (:id, :email, :nombre, :pass)";
-    
-    
+    $sql = "INSERT INTO usuarios (id, email, nombre, password)";
+    $sql .= " VALUES (:id, :email, :nombre, :pass)";
+
+
     $cn = getConexion();
-    $cn->consulta( $sql, array(
+    $cn->consulta($sql, array(
         array("id", '', 'int'),
         array("email", $email, 'string'),
         array("nombre", $nombre, 'string'),
@@ -97,6 +95,13 @@ function guardarUsuario($nombre, $email, $password) {
             )
     );
 }
+
+// Validar password
+
+function validarPass($clave) {
+    return strlen($clave) == 8 && preg_match('`[a-zA-Z]`', $clave) && preg_match('`[0-9]`', $clave) ;
+}
+
 //Smarty
 function getSmarty() {
     $miSmarty = new Smarty();
