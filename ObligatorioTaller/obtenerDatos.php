@@ -50,6 +50,16 @@ function obtenerPublicacionPorTipo($tip) {
     return $cn->restantesRegistros();
 }
 
+function obtenerPublicacionesAbiertasPorUsuario($usr) {
+    $cn = getConexion();
+    $cn->consulta(
+            "select titulo from publicaciones where usuario_id=:usr AND abierto=1", array(
+        array("usr", $usr, 'int')
+    ));
+
+    return $cn->restantesRegistros();
+}
+
 ////////////////////////////////////////
 //Login de Usuario
 function login($usuario, $clave) {
@@ -121,9 +131,23 @@ function guardarPublicacion($titulo, $descripcion, $tipo, $especieid, $raza, $ba
     );
 }
 
+//Cerrar publicacion
+
+function cerrarPublicacion($idPubli, $exito) {
+
+    $sql = "UPDATE publicaciones SET abierto=0, exitoso=:exitoso";
+    $sql .= " where id=:id";
+    $cn = getConexion();
+    $cn->consulta($sql, array(
+        array("id", $idPubli, 'int'),
+        array("exitoso", $exito, 'int')));
+}
+
+
+
 //Devolver id
 
-function devolverIdEspecie($especie){
+function devolverIdEspecie($especie) {
     $cn = getConexion();
     $cn->consulta(
             "select id from especies where nombre=:especie", array(
@@ -133,7 +157,7 @@ function devolverIdEspecie($especie){
     return $idEspecie['id'];
 }
 
-function devolverIdRaza($raza){
+function devolverIdRaza($raza) {
     $cn = getConexion();
     $cn->consulta(
             "select id from razas where nombre=:raza", array(
@@ -141,10 +165,9 @@ function devolverIdRaza($raza){
     ));
     $idRaza = $cn->siguienteRegistro();
     return $idRaza['id'];
-    
 }
 
-function devolverIdBarrio($barrio){
+function devolverIdBarrio($barrio) {
     $cn = getConexion();
     $cn->consulta(
             "select id from barrios where nombre=:barrio", array(
@@ -154,14 +177,18 @@ function devolverIdBarrio($barrio){
     return $idBarrio['id'];
 }
 
-function devolverIdUsuario($usuario){
- /*   $cn = getConexion();
-    $cn->consulta(
-            "select id from usuarios where nombre=:usuario", array(
-        array("usuario", $usuario, 'string')
-    ));
-    $idUsuario = $cn->siguienteRegistro();*/
+function devolverIdUsuario($usuario) {
     return $usuario['id'];
+}
+
+function devolverIdPublicacion($tituloPublicacion) {
+    $cn = getConexion();
+    $cn->consulta(
+            "select id from publicaciones where titulo=:titulo", array(
+        array("titulo", $tituloPublicacion, 'string')
+    ));
+    $idPubli = $cn->siguienteRegistro();
+    return $idPubli['id'];
 }
 
 // Validar password
