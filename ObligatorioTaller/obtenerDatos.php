@@ -106,15 +106,36 @@ function guardarUsuario($nombre, $email, $password) {
     );
 }
 
+//alta imagenes
+function guardarImagenes($titulo, $foto) {
+    //dentro de la carpeta Fotos, la idea es crear un directorio por publicacion que almacene las fotos de la misma. 
+    //Crea bien de bien el directorio, reconoce la imagen, pero no la guarda en el serv. 
+    $id = $titulo . " " . $foto['name'];
+    $directorio = "./fotos/".$titulo;
+    
+    if(!file_exists($directorio)){
+        mkdir($directorio,0777);
+    }
+    
+    if (isset($foto)) {
+        $temporal = $foto['tmp_name'];
+        $nuevo = $directorio. "/" . $id;
+        move_uploaded_file($temporal, $nuevo);
+ 
+    }
+}
+
+
+
 //Alta publicacion
-function guardarPublicacion($titulo, $descripcion, $tipo, $especieid, $raza, $barrio, $abierto, $usuario) {
+function guardarPublicacion($titulo, $descripcion, $tipo, $especieid, $raza, $barrio, $abierto, $usuario, $foto) {
 
     $sql = "INSERT INTO publicaciones (id, titulo, descripcion, tipo, especie_id, raza_id, barrio_id, abierto, usuario_id, exitoso, latitud, longitud)";
     $sql .= " VALUES (:id, :titulo, :descripcion, :tipo, :especie_id, :raza_id, :barrio_id, :abierto, :usuario_id, :exitoso, :latitud, :longitud)";
 
 
     $cn = getConexion();
-    $cn->consulta($sql, array(
+    $parametros = array(
         array("id", '', 'int'),
         array("titulo", $titulo, 'string'),
         array("descripcion", $descripcion, 'string'),
@@ -127,8 +148,15 @@ function guardarPublicacion($titulo, $descripcion, $tipo, $especieid, $raza, $ba
         array("exitoso", '', 'bit'),
         array("latitud", '', 'decimal'),
         array("longitud", '', 'decimal')
-            )
-    );
+            );
+    
+    guardarImagenes($titulo, $foto);
+    
+    if($cn->consulta($sql, $parametros)){
+        return true;
+    }
+    return false;
+    
 }
 
 //Cerrar publicacion

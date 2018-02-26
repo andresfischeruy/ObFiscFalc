@@ -13,24 +13,29 @@ $titulo = $_POST['titulo'];
 $descripcion = $_POST['descripcion'];
 $tipo = $_POST['tipo'];
 $especie = $_POST['comboEspecies'];
-$especieID = (int)devolverIdEspecie($especie);
+$especieID = (int) devolverIdEspecie($especie);
 $raza = $_POST['comboRazas'];
-$razaID = (int)devolverIdRaza($raza);
+$razaID = (int) devolverIdRaza($raza);
 $barrio = $_POST['comboBarrios'];
-$barrioID = (int)devolverIdBarrio($barrio);
+$barrioID = (int) devolverIdBarrio($barrio);
 $abierto = 1;
 $usuario = usuarioLogueado();
 $usuarioID = (int) devolverIdUsuario($usuario);
+$foto = $_FILES['img'];
 
 
 
-if(strlen($titulo) == 0 || strlen($descripcion) == 0){
+if (strlen($titulo) == 0 || strlen($descripcion) == 0) {
     $miSmarty->assign("tipoAlerta", "alert alert-warning");
     $miSmarty->assign("mensajeAlerta", "(*) Campos requeridos");
 } else {
-    $miSmarty->assign("tipoAlerta", "alert alert-success");
-    $miSmarty->assign("mensajeAlerta", "Registro exitoso.");
-    guardarPublicacion($titulo, $descripcion, $tipo, $especieID, $razaID, $barrioID, $abierto, $usuarioID);
+    if (guardarPublicacion($titulo, $descripcion, $tipo, $especieID, $razaID, $barrioID, $abierto, $usuarioID, $foto)) {
+        $miSmarty->assign("tipoAlerta", "alert alert-success");
+        $miSmarty->assign("mensajeAlerta", "Registro exitoso.");
+    } else {
+        $miSmarty->assign("tipoAlerta", "alert alert-danger");
+        $miSmarty->assign("mensajeAlerta", "No se pudo realizar la publicacion.");
+    }
 }
 
 
