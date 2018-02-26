@@ -41,13 +41,13 @@
 
                             <li class="">
                                 {if (!isset($usuario))}
-                                    <li class=""><a href="register.php">Registrarse</a></li>
-                                    <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success">Login</span></a>
-                                {else}
-                                    <li class=""><a href="newPost.php">Nueva Publicación</a></li>
-                                    <li class=""><a href="#">Estadisticas</a></li>
-                                    <a href="doLogout.php" role="button" style="padding-right:0"><span class="btn btn-large btn-success">Salir</span></a>
-                                {/if}
+                                <li class=""><a href="register.php">Registrarse</a></li>
+                                <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success">Login</span></a>
+                            {else}
+                                <li class=""><a href="newPost.php">Nueva Publicación</a></li>
+                                <li class=""><a href="#">Estadisticas</a></li>
+                                <a href="doLogout.php" role="button" style="padding-right:0"><span class="btn btn-large btn-success">Salir</span></a>
+                            {/if}
                             <div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="false" >
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -83,7 +83,7 @@
 
                     <div class="span4">
                         <h4>Ingrese los datos de su publicación</h4>
-                        <form class="form-horizontal" method="POST" action="newPost.php">
+                        <form class="form-horizontal" method="POST" action="newPost.php" enctype="multipart/form-data">
                             <fieldset>
                                 <div class="control-group">
                                     <input type="text" name ="titulo" placeholder="* Titulo de la publicacion" class="input-xlarge"/>
@@ -91,7 +91,7 @@
                                 <div class="control-group">
                                     *Especie <select name="comboEspecies">
                                         {foreach from=$especies item=esp}
-                                            <option value={$esp.nombre}> {$esp.nombre} </option>
+                                            <option value="{$esp.nombre}"> {$esp.nombre} </option>
                                         {/foreach}	
                                     </select>
 
@@ -99,14 +99,14 @@
                                 <div class="control-group">
                                     *Raza <select name="comboRazas">
                                         {foreach from=$razas item=raz}
-                                            <option value={$raz.nombre}> {$raz.nombre} </option>
+                                            <option value="{$raz.nombre}"> {$raz.nombre} </option>
                                         {/foreach}	
                                     </select>
                                 </div>
                                 <div class="control-group">
                                     *Barrio <select name="comboBarrios">
                                         {foreach from=$barrios item=bar}
-                                            <option value={$bar.nombre}> {$bar.nombre} </option>
+                                            <option value="{$bar.nombre}"> {$bar.nombre} </option>
                                         {/foreach}	
                                     </select>
                                 </div>
@@ -123,10 +123,14 @@
                                     </label>
                                 </fieldset>
 
-                                <button id = "btnPublicar" class="btn btn-large" type="submit">Publicar</button>
-
+                                <div class="span4">
+                                    <h4>Agregar imágenes</h4>
+                                    <div>
+                                        <input type="file" class="form-control" id="imagenes" name="img" multiple="">
+                                    </div>
+                                </div>
                             </fieldset>
-
+                            <button id = "btnPublicar" class="btn btn-large" type="submit">Publicar</button>
                             <div  class='{$tipoAlerta}'>
                                 <button type='button' class='close' data-dismiss='alert'>×</button>
                                 {$mensajeAlerta}
@@ -134,17 +138,7 @@
                         </form>
                     </div>
 
-                    <div class="span4">
-                        <h4>Agregar imágenes</h4>
-                        <div>
-                            <form name="imagenes" id="imagenes" method="post" action="" enctype="multipart/form-data">
-                                <input type="file" class="form-control" id="archivo[]" name="archivo[]" multiple="">
-                                <button type="submit" class="btn btn-primary">Cargar</button>
 
-                            </form>
-
-                        </div>
-                    </div>
 
                 </div>
 
