@@ -3,29 +3,35 @@
 require_once 'obtenerDatos.php';
 require_once 'libs/Smarty.class.php';
 
-$tipoPubli = 'E';
-$especie = "Perros";
+$tipo = 'E';
+$especie = 1;
+
+
+
+
 
 if (isset($_GET['tipo'])) {
-    $tipoPubli = $_GET['tipo'];
+    $tipo = $_GET['tipo'];
 }
 
 if (isset($_GET['especie'])) {
-    $tipoPubli = $_GET['especie'];
+    $especie = $_GET['especie'];
 }
+
 
 
 $miSmarty = getSmarty();
 
 
 //Carga de SideBar
+ $miSmarty->assign("tipo", $tipo);
 $miSmarty->assign("especies", obtenerEspecies());
-$miSmarty->assign("razas", obtenerRazas());
+$miSmarty->assign("razas", obtenerRazas($especie));
 $miSmarty->assign("barrios", obtenerBarrios());
 
 
 //Carga de Publicaciones
-$miSmarty->assign("publicaciones", obtenerPublicacionPorTipo($tipoPubli));
+$miSmarty->assign("publicaciones", obtenerPublicacionPorTipo($tipo, $especie));
 
 
 

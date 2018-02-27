@@ -20,9 +20,11 @@ function obtenerEspecies() {
     return $cn->restantesRegistros();
 }
 
-function obtenerRazas() {
+function obtenerRazas($esp) {
     $cn = getConexion();
-    $cn->consulta("select * from razas");
+    $cn->consulta("select * from razas where especie_id=:esp", array(
+        array("esp", $esp, 'int')
+    ));
     return $cn->restantesRegistros();
 }
 
@@ -34,17 +36,19 @@ function obtenerBarrios() {
 
 ////////////////////////////////////////
 //Carga de Publicaciones
+
 function obtenerTodasLasPublicaciones() {
     $cn = getConexion();
     $cn->consulta("select * from publicaciones");
     return $cn->restantesRegistros();
 }
 
-function obtenerPublicacionPorTipo($tip) {
+function obtenerPublicacionPorTipo($tip, $esp) {
     $cn = getConexion();
     $cn->consulta(
-            "select * from publicaciones where tipo=:tip", array(
-        array("tip", $tip, 'char')
+            "select * from publicaciones where tipo=:tip AND especie_id=:esp", array(
+        array("tip", $tip, 'char'),
+        array("esp", $esp, 'int')
     ));
 
     return $cn->restantesRegistros();
@@ -106,33 +110,31 @@ function guardarUsuario($nombre, $email, $password) {
     );
 }
 
-//alta imagenes
+///////////////////////////////////////
+//Alta imagenes
 function guardarImagenes($titulo, $foto) {
     //dentro de la carpeta Fotos, la idea es crear un directorio por publicacion que almacene las fotos de la misma. 
     //Crea bien de bien el directorio, reconoce la imagen, pero no la guarda en el serv. 
     $id = $titulo . " " . $foto['name'];
-    $directorio = "./fotos/".$titulo;
-    
-    if(!file_exists($directorio)){
-        mkdir($directorio,0777);
+    $directorio = "./fotos/" . $titulo;
+
+    if (!file_exists($directorio)) {
+        mkdir($directorio, 0777);
     }
-    
+
     if (isset($foto)) {
         $temporal = $foto['tmp_name'];
-        $nuevo = $directorio. "/" . $id;
+        $nuevo = $directorio . "/" . $id;
         move_uploaded_file($temporal, $nuevo);
- 
     }
 }
 
-
-
+///////////////////////////////////////
 //Alta publicacion
 function guardarPublicacion($titulo, $descripcion, $tipo, $especieid, $raza, $barrio, $abierto, $usuario, $foto) {
 
     $sql = "INSERT INTO publicaciones (id, titulo, descripcion, tipo, especie_id, raza_id, barrio_id, abierto, usuario_id, exitoso, latitud, longitud)";
     $sql .= " VALUES (:id, :titulo, :descripcion, :tipo, :especie_id, :raza_id, :barrio_id, :abierto, :usuario_id, :exitoso, :latitud, :longitud)";
-
 
     $cn = getConexion();
     $parametros = array(
@@ -148,15 +150,11 @@ function guardarPublicacion($titulo, $descripcion, $tipo, $especieid, $raza, $ba
         array("exitoso", '', 'bit'),
         array("latitud", '', 'decimal'),
         array("longitud", '', 'decimal')
-            );
-    
+    );
+
     guardarImagenes($titulo, $foto);
-    
-    if($cn->consulta($sql, $parametros)){
-        return true;
-    }
-    return false;
-    
+
+    return $cn->consulta($sql, $parametros);
 }
 
 //Cerrar publicacion
@@ -167,10 +165,11 @@ function cerrarPublicacion($idPubli, $exito) {
     $sql .= " where id=:id";
     $cn = getConexion();
     $cn->consulta($sql, array(
-                array("id", $idPubli, 'int'),
-                array("exitoso", $exito, 'int')));
+        array("id", $idPubli, 'int'),
+        array("exitoso", $exito, 'int')));
 }
 
+///////////////////////////////////////
 //Devolver id
 
 function devolverIdEspecie($especie) {
@@ -223,7 +222,7 @@ function validarPass($clave) {
     return strlen($clave) > 8 && preg_match('`[a-zA-Z]`', $clave) && preg_match('`[0-9]`', $clave);
 }
 
-//Controlar email repetido
+//Validar email repetido
 
 function existeEmail($email) {
     $cn = getConexion();
@@ -235,7 +234,7 @@ function existeEmail($email) {
     return $usuarioEmail != null;
 }
 
-//Smarty
+//Configuración de Smarty
 function getSmarty() {
     $miSmarty = new Smarty();
     $miSmarty->template_dir = "templates";
