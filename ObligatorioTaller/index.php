@@ -9,9 +9,6 @@ $raza = 1;
 $barrio = 1;
 
 
-
-
-
 if (isset($_GET['tipo'])) {
     $tipo = $_GET['tipo'];
 }
@@ -31,12 +28,14 @@ if (isset($_GET['barrio'])) {
 $miSmarty = getSmarty();
 
 
-//Carga de SideBar
+
 $miSmarty->assign("tipo", $tipo);
 $miSmarty->assign("raza", $raza);
 $miSmarty->assign("especie", $especie);
 $miSmarty->assign("barrio", $barrio);
 
+
+//Carga de SideBar
 $miSmarty->assign("especies", obtenerEspecies());
 $miSmarty->assign("razas", obtenerRazas($especie));
 $miSmarty->assign("barrios", obtenerBarrios());
@@ -44,9 +43,6 @@ $miSmarty->assign("barrios", obtenerBarrios());
 
 //Carga de Publicaciones
 $miSmarty->assign("publicaciones", obtenerPublicacionPorTipo($tipo, $especie, $raza, $barrio));
-
-
-
 
 $miSmarty->display('index.tpl');
 

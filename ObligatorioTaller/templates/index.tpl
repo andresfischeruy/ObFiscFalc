@@ -106,24 +106,24 @@
                             </li>
                             <li class="subMenu"><a> ESPECIE</a>
                                 <ul style="display:none">
-                                    {foreach from=$especies item=esp}
-                                        <li><a href="index.php?tipo={$tipo}&especie={$esp.id}&raza={$raza}"><i class="icon-chevron-right"></i>{$esp.nombre}</a></li>
+                                    {foreach from=$especies item=espp}
+                                        <li><a href="index.php?tipo={$tipo}&especie={$espp.id}&raza={$raza}&barrio={$barrio}"><i class="icon-chevron-right"></i>{$espp.nombre}</a></li>
                                             {/foreach}
                                 </ul>
                             </li>
                             <li class="subMenu"><a> RAZAS</a>
                                 <ul style="display:none">
-                                    {foreach from=$razas item=raz}
-                                        <li><a href="index.php?tipo={$tipo}&especie={$especie}&raza={$raz.id}"><i class="icon-chevron-right"></i>{$raz.nombre}</a></li>
-                                        {/foreach}
+                                    {foreach from=$razas item=razz}
+                                        <li><a href="index.php?tipo={$tipo}&especie={$especie}&raza={$razz.id}&barrio={$barrio}"><i class="icon-chevron-right"></i>{$razz.nombre}</a></li>
+                                            {/foreach}
                                 </ul>
                             </li>
 
                             <li class="subMenu"><a> BARRIO</a>
                                 <ul style="display:none">
-                                    {foreach from=$barrios item=bar}
-                                        <li><a href="index.php?tipo={$tipo}&especie={$especie}&raza={$raza}&barrio={$bar.id}"><i class="icon-chevron-right"></i>{$bar.nombre}</a></li>
-                                        {/foreach}											
+                                    {foreach from=$barrios item=barr}
+                                        <li><a href="index.php?tipo={$tipo}&especie={$especie}&raza={$raza}&barrio={$barr.id}"><i class="icon-chevron-right"></i>{$barr.nombre}</a></li>
+                                            {/foreach}											
                                 </ul>
                             </li>
 
@@ -137,20 +137,19 @@
                     <h4>Publicaciones</h4>
 
                     <ul class="thumbnails">
-
-                        {foreach from=$publicaciones item=pub}
-                            <li class="span3">
-                                <div class="thumbnail">
-                                    <a  href="#"><img src="themes/images/products/1.jpg" alt="Foto de Publicacion"/></a>
-                                    <div class="caption">
-                                        <h5>{$pub.titulo}</h5>
-                                        <p> {$pub.descripcion}</p>
+                        
+                            {foreach from=$publicaciones item=pu}
+                                <li class="span3">
+                                    <div class="thumbnail">
+                                        <a  href="#"><img src="themes/images/products/1.jpg" alt="Foto de Publicacion"/></a>
+                                        <div class="caption">
+                                            <h5>{$pu.titulo}</h5>
+                                            <p> {$pu.descripcion}</p>
+                                        </div>
                                     </div>
-                                </div>
-                            </li>
-                        {/foreach}
-
-
+                                </li>
+                            {/foreach}
+                       
                     </ul>
 
 
