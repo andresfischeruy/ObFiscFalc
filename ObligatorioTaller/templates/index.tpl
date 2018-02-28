@@ -8,11 +8,12 @@
         <meta name="author" content="">
 
         <!-- Bootstrap style --> 
-        <link id="callCss" rel="stylesheet" href="themes/css/bootstrap.min.css" media="screen"/>
+        <link id="callCss" rel="stylesheet" href="themes/bootshop/bootstrap.min.css" media="screen"/>
         <link href="themes/css/base.css" rel="stylesheet" media="screen"/>
         <!-- Bootstrap style responsive -->	
         <link href="themes/css/bootstrap-responsive.min.css" rel="stylesheet"/>
         <link href="themes/css/font-awesome.css" rel="stylesheet" type="text/css">
+
 
         <style type="text/css" id="enject"></style>
     </head>
@@ -99,16 +100,22 @@
                         <ul id="sideManu" class="nav nav-tabs nav-stacked">
                             <li class="subMenu open"><a> TIPO DE PUBLICACIÓN</a>
                                 <ul>
-                                    <li><a class="active" href="index.php?tipo=E"><i class="icon-chevron-right"></i>Encontrados </a></li>
-                                    <li><a href="index.php?tipo=P"><i class="icon-chevron-right"></i>Perdidos </a></li>
+                                    <li><a class="active" href="index.php?tipo=E&especie={$especie}&raza={$raza}&barrio={$barrio}"><i class="icon-chevron-right"></i>Encontrados </a></li>
+                                    <li><a href="index.php?tipo=P&especie={$especie}&raza={$raza}&barrio={$barrio}"><i class="icon-chevron-right"></i>Perdidos </a></li>
 
                                 </ul>
                             </li>
                             <li class="subMenu"><a> ESPECIE</a>
                                 <ul style="display:none">
                                     {foreach from=$especies item=espp}
-                                        <li><a href="index.php?tipo={$tipo}&especie={$espp.id}&raza={$raza}&barrio={$barrio}"><i class="icon-chevron-right"></i>{$espp.nombre}</a></li>
-                                            {/foreach}
+                                        {if $espp.id == especie }
+                                            <li><a class="active" href="index.php?tipo={$tipo}&especie={$espp.id}&raza={$raza}&barrio={$barrio}"><i class="icon-chevron-right"></i>{$espp.nombre}</a></li>
+                                                {else}
+                                            <li><a href="index.php?tipo={$tipo}&especie={$espp.id}&raza={$raza}&barrio={$barrio}"><i class="icon-chevron-right"></i>{$espp.nombre}</a></li> 
+                                                {/if}
+
+
+                                    {/foreach}
                                 </ul>
                             </li>
                             <li class="subMenu"><a> RAZAS</a>
@@ -137,19 +144,19 @@
                     <h4>Publicaciones</h4>
 
                     <ul class="thumbnails">
-                        
-                            {foreach from=$publicaciones item=pu}
-                                <li class="span3">
-                                    <div class="thumbnail">
-                                        <a  href="#"><img src="themes/images/products/1.jpg" alt="Foto de Publicacion"/></a>
-                                        <div class="caption">
-                                            <h5>{$pu.titulo}</h5>
-                                            <p> {$pu.descripcion}</p>
-                                        </div>
+
+                        {foreach from=$publicaciones item=pu}
+                            <li class="span3">
+                                <div class="thumbnail">
+                                    <a  href="#"><img src="themes/images/products/1.jpg" alt="Foto de Publicacion"/></a>
+                                    <div class="caption">
+                                        <h5>{$pu.titulo}</h5>
+                                        <p> {$pu.descripcion}</p>
                                     </div>
-                                </li>
-                            {/foreach}
-                       
+                                </div>
+                            </li>
+                        {/foreach}
+
                     </ul>
 
 
@@ -157,10 +164,10 @@
             </div>
         </div>
         <!-- Placed at the end of the document so the pages load faster ============================================= -->
-        <script src="themes/js/jquery.js" type="text/javascript"></script>
-        <script src="themes/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="themes/js/bootshop.js"></script>
-        <script src="themes/js/jquery.lightbox-0.5.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="themes/js/bootshop.js"></script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/js/lightbox.min.js"></script>
 
     </body>
 </html>
