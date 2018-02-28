@@ -122,7 +122,7 @@
                             <li class="subMenu"><a> BARRIO</a>
                                 <ul style="display:none">
                                     {foreach from=$barrios item=bar}
-                                        <li><i class="icon-chevron-right"></i>{$bar.nombre}</li>
+                                        <li><a href="index.php?tipo={$tipo}&especie={$especie}&raza={$raza}&barrio={$bar.id}"><i class="icon-chevron-right"></i>{$bar.nombre}</a></li>
                                         {/foreach}											
                                 </ul>
                             </li>
