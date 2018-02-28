@@ -107,14 +107,14 @@
                             <li class="subMenu"><a> ESPECIE</a>
                                 <ul style="display:none">
                                     {foreach from=$especies item=esp}
-                                        <li><a href="index.php?tipo={$tipo}&especie={$esp.id}"><i class="icon-chevron-right"></i>{$esp.nombre}</a></li>
+                                        <li><a href="index.php?tipo={$tipo}&especie={$esp.id}&raza={$raza}"><i class="icon-chevron-right"></i>{$esp.nombre}</a></li>
                                             {/foreach}
                                 </ul>
                             </li>
                             <li class="subMenu"><a> RAZAS</a>
                                 <ul style="display:none">
                                     {foreach from=$razas item=raz}
-                                        <li><i class="icon-chevron-right"></i>{$raz.nombre}</li>
+                                        <li><a href="index.php?tipo={$tipo}&especie={$especie}&raza={$raz.id}"><i class="icon-chevron-right"></i>{$raz.nombre}</a></li>
                                         {/foreach}
                                 </ul>
                             </li>

@@ -43,11 +43,12 @@ function obtenerTodasLasPublicaciones() {
     return $cn->restantesRegistros();
 }
 
-function obtenerPublicacionPorTipo($tip, $esp) {
+function obtenerPublicacionPorTipo($tip, $esp, $raz) {
     $cn = getConexion();
     $cn->consulta(
-            "select * from publicaciones where tipo=:tip AND especie_id=:esp", array(
+            "select * from publicaciones where tipo=:tip AND especie_id=:esp AND raza_id=:raz", array(
         array("tip", $tip, 'char'),
+        array("raz", $raz, 'int'),
         array("esp", $esp, 'int')
     ));
 
