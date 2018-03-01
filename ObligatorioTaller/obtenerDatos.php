@@ -44,6 +44,12 @@ function obtenerTodasLasPublicaciones() {
 }
 
 function obtenerPublicacionPorTipo($ti, $es, $ra, $ba) {
+    
+    if (!isset($ti) && !isset($es) && !isset($ra) && !isset($ba)) {
+        return obtenerTodasLasPublicaciones();
+    }
+    
+    
     $cn = getConexion();
     $cn->consulta(
             "select * from publicaciones where tipo=:ti AND especie_id=:es AND raza_id=:ra AND barrio_id=:ba", array(
@@ -65,6 +71,19 @@ function obtenerPublicacionesAbiertasPorUsuario($usr) {
 
     return $cn->restantesRegistros();
 }
+
+function obtenerPublicacionPorID($iden) {
+    
+    $cn = getConexion();
+    $cn->consulta(
+            "select * from publicaciones where id=:iden", array(
+        array("iden", $iden, 'int')
+    ));
+
+    return $cn->siguienteRegistro();
+}
+
+
 
 ////////////////////////////////////////
 //Login de Usuario
@@ -217,6 +236,18 @@ function devolverIdPublicacion($tituloPublicacion) {
     $idPubli = $cn->siguienteRegistro();
     return $idPubli['id'];
 }
+
+function devolverNombreEspecie($especie) {
+    $cn = getConexion();
+    $cn->consulta(
+            "select nombre from especies where id=:especie", array(
+        array("especie", $especie, 'int')
+    ));
+    return $cn->siguienteRegistro();
+}
+
+
+
 
 // Validar password
 

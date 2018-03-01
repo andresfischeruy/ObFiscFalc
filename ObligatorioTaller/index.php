@@ -3,10 +3,6 @@
 require_once 'obtenerDatos.php';
 require_once 'libs/Smarty.class.php';
 
-$tipo = 'E';
-$especie = 1;
-$raza = 1;
-$barrio = 1;
 
 
 if (isset($_GET['tipo'])) {
