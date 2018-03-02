@@ -15,8 +15,11 @@ $miSmarty = getSmarty();
 //Carga de publicacion
 $publicacion = obtenerPublicacionPorID($id);
 $miSmarty->assign("publicacion", $publicacion);
+
 $miSmarty->assign("especie", devolverNombreEspecie($publicacion['especie_id']));
 
-
+//Carga de preguntas
+$preguntas = obtenerPreguntas($id);
+$miSmarty->assign("preguntas", $preguntas);
 
 $miSmarty->display('details.tpl');

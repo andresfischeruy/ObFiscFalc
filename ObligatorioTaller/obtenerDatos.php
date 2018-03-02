@@ -178,6 +178,18 @@ function guardarPublicacion($titulo, $descripcion, $tipo, $especieid, $raza, $ba
     return $cn->consulta($sql, $parametros);
 }
 
+//Obtener Preguntas
+
+function obtenerPreguntas($idP){
+    $cn = getConexion();
+    $cn->consulta(
+            "select * from preguntas where id_publicacion=:id", array(
+        array("id", $idP, 'int')
+    ));
+
+    return $cn->restantesRegistros();
+}
+
 //Cerrar publicacion
 
 function cerrarPublicacion($idPubli, $exito) {
@@ -250,13 +262,11 @@ function devolverNombreEspecie($especie) {
 
 
 // Validar password
-
 function validarPass($clave) {
     return strlen($clave) > 8 && preg_match('`[a-zA-Z]`', $clave) && preg_match('`[0-9]`', $clave);
 }
 
 //Validar email repetido
-
 function existeEmail($email) {
     $cn = getConexion();
     $cn->consulta(

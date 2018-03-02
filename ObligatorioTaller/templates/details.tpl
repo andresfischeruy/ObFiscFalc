@@ -74,12 +74,7 @@
                                         <input type="submit" class="btn btn-success" value="Iniciar sesión" >
                                         <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
                                     </form>		
-
                                 </div>
-
-
-
-
                             </div>
                             </li>
                         </ul>
@@ -98,7 +93,7 @@
 
                         <div class="row">	  
                             <div id="gallery" class="span3">
-                                <a href="themes/images/products/large/f1.jpg" title="Fujifilm FinePix S2950 Digital Camera">
+                                <a href="#" title="Fujifilm FinePix S2950 Digital Camera">
                                     <img src="themes/images/products/large/3.jpg" style="width:100%" alt="Fujifilm FinePix S2950 Digital Camera"/>
                                 </a>
                                 <div id="differentview" class="moreOptopm carousel slide">
@@ -134,17 +129,46 @@
                         </div>
                     </div>
                 </div>
+
+
+
+                <h1>Preguntas</h1>
+                <hr class="soften"/>	
+
+                {foreach from=$preguntas item=preg}
+                    <div class="accordion" id="accordion2">
+                        <div class="accordion-group">
+                            <div class="accordion-heading">
+                                <h4><a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                                        {$preg.texto}
+                                    </a></h4>
+                            </div>
+                            <div id="collapseOne" class="accordion-body collapse"  >
+                                <div class="accordion-inner">
+                                    {$preg.respuesta}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {/foreach}
+
+
             </div>
         </div>
 
-        <!-- MainBody End ============================= -->
-
-        <!-- Placed at the end of the document so the pages load faster ============================================= -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="themes/js/bootshop.js"></script> 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/js/lightbox.min.js"></script>
+    </div>
 
 
-    </body>
+</div>
+
+<!-- MainBody End ============================= -->
+
+<!-- Placed at the end of the document so the pages load faster ============================================= -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="themes/js/bootshop.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/js/lightbox.min.js"></script>
+
+
+</body>
 </html>
