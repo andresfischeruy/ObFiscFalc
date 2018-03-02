@@ -126,7 +126,7 @@
                                 <div class="span4">
                                     <h4>Agregar imágenes</h4>
                                     <div>
-                                        <input type="file" class="form-control" id="imagenes" name="img" multiple="">
+                                        <input type="file" class="form-control" id="imagenes" name="img[]" multiple="multiple">
                                     </div>
                                 </div>
                             </fieldset>

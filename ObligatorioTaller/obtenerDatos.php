@@ -141,13 +141,15 @@ function guardarUsuario($nombre, $email, $password) {
 //Alta imagenes
 function guardarImagenes($titulo, $foto) {
 
-    $idFoto = $titulo . " " . $foto['name'];
-    $directorio = "./fotos";
+    for ($index = 0; $index < count($foto['name']); $index++) {
+        $idFoto = $titulo . " " . $foto['name'][$index];
+        $directorio = "./fotos";
 
-    if (isset($foto)) {
-        $temporal = $foto['tmp_name'];
-        $nuevo = $directorio . "/" . $idFoto;
-        move_uploaded_file($temporal, $nuevo);
+        if ($foto['name'][$index]) {
+            $temporal = $foto['tmp_name'][$index];
+            $nuevo = $directorio . "/" . $idFoto;
+            move_uploaded_file($temporal, $nuevo);
+        }
     }
 }
 
