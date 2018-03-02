@@ -200,7 +200,7 @@
                     {foreach from=$publicaciones item=pu}
                         <li class="span3">
                             <div class="thumbnail">
-                                <a  href="details.php?id={$pu.id}"><img src="themes/images/products/1.jpg" alt="Foto de Publicacion"/></a>
+                                <a  href="details.php?id={$pu.id}"> <img src="{$fotos[0]}"  alt="Foto de Publicacion"/></a>
                                 <div class="caption">
                                     <h5><a  href="details.php?id={$pu.id}">{$pu.titulo}</a></h5>
                                     {if {$pu.tipo} == 'E'}
