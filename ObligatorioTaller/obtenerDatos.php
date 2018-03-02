@@ -157,14 +157,14 @@ function guardarImagenes($titulo, $foto) {
     return $exito;
 }
 
-function levantarImagenes($directorio,$publi) {
+function levantarImagenes($directorio, $publi) {
     $fotos = array();
 
     if (is_dir($directorio)) {
         $d = dir($directorio);
-        $idPublicacion= intval($publi, 10);
+        $idPublicacion = intval($publi, 10);
         while (false !== ($file = $d->read())) {
-            $publiRecorrida = intval(obtenerIdPublicacionSegunFoto($file),10);
+            $publiRecorrida = intval(obtenerIdPublicacionSegunFoto($file), 10);
             if ($file != "." && $file != ".." && $idPublicacion == $publiRecorrida) {
                 $fotos[] = $directorio . $file;
             }
@@ -310,6 +310,7 @@ function existeEmail($email) {
     $usuarioEmail = $cn->siguienteRegistro();
     return $usuarioEmail != null;
 }
+
 
 //Configuración de Smarty
 function getSmarty() {
