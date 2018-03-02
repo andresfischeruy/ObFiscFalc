@@ -203,7 +203,7 @@
                                 <a  href="details.php?id={$pu.id}"><img src="themes/images/products/1.jpg" alt="Foto de Publicacion"/></a>
                                 <div class="caption">
                                     <h5><a  href="details.php?id={$pu.id}">{$pu.titulo}</a></h5>
-                                    <p> {$pu.descripcion}</p>
+                                    <p> {$pu.descripcion|truncate:153:"...":true}</p>
                                 </div>
                             </div>
                         </li>
