@@ -130,7 +130,15 @@
                     </div>
                 </div>
 
-
+            <!--     -->
+                    <ul>
+                        {foreach from=$fotos item=src}
+                            <li>
+                               <img src="{$src}" />
+                            </li>
+                        {/foreach}             
+                    </ul>
+                <!--</div>-->
 
                 <h1>Preguntas</h1>
                 <hr class="soften"/>	

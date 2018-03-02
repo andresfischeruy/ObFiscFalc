@@ -138,13 +138,10 @@ function guardarUsuario($nombre, $email, $password) {
 }
 
 ///////////////////////////////////////
-//Alta imagenes
+//Manejo de imagenes
 function guardarImagenes($titulo, $foto) {
     $exito = true;
-    
-    /*if(!$foto){
-        $exito = false;
-    }*/
+
     for ($index = 0; $index < count($foto['name']); $index++) {
         $idFoto = $titulo . " " . $foto['name'][$index];
         $directorio = "./fotos";
@@ -158,6 +155,21 @@ function guardarImagenes($titulo, $foto) {
         }
     }
     return $exito;
+}
+
+function levantarImagenes($directorio) {
+    $fotos = array();
+    if (is_dir($directorio)) {
+        $d = dir($directorio);
+        while (false !== ($file = $d->read())) {
+            if ($file != "." && $file != ".."){
+                $fotos[] = $directorio . $file;
+            }
+                
+        }
+        $d->close();
+    }
+    return $fotos;
 }
 
 ///////////////////////////////////////
@@ -181,16 +193,16 @@ function guardarPublicacion($titulo, $descripcion, $tipo, $especieid, $raza, $ba
         array("latitud", '', 'decimal'),
         array("longitud", '', 'decimal')
     );
-    
-    if(count($foto['name']) == 1 && strlen($foto['name'][0]) == 0){
+
+    if (count($foto['name']) == 1 && strlen($foto['name'][0]) == 0) {
         return false;
     }
-    
+
     if (!$cn->consulta($sql, $parametros)) {
         return false;
     }
     $idPubli = $cn->ultimoIdInsert();
-    if(!guardarImagenes($idPubli, $foto)){
+    if (!guardarImagenes($idPubli, $foto)) {
         return false;
     }
     return true;
