@@ -51,10 +51,16 @@ function obtenerTodasLasPublicaciones() {
     return $cn->restantesRegistros();
 }
 
+function obtenerTodasLasPublicacionesAbiertas() {
+    $cn = getConexion();
+    $cn->consulta("select * from publicaciones where abierto=1");
+    return $cn->restantesRegistros();
+}
+
 function obtenerPublicacionPorTipo($ti, $es, $ra, $ba) {
 
     if (!isset($ti) && !isset($es) && !isset($ra) && !isset($ba)) {
-        return obtenerTodasLasPublicaciones();
+        return obtenerTodasLasPublicacionesAbiertas();
     }
 
 
