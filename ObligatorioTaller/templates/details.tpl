@@ -130,9 +130,9 @@
                     </div>
                 </div>
 
-            <!--     -->
                     <ul>
                         {foreach from=$fotos item=src}
+                            {$src}
                             <li>
                                <img src="{$src}" />
                             </li>

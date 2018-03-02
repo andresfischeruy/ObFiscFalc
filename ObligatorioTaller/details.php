@@ -21,5 +21,5 @@ $miSmarty->assign("especie", devolverNombreEspecie($publicacion['especie_id']));
 //Carga de preguntas
 $preguntas = obtenerPreguntas($id);
 $miSmarty->assign("preguntas", $preguntas);
-$miSmarty->assign('fotos', levantarImagenes("./fotos/"));
+$miSmarty->assign('fotos', levantarImagenes("./fotos/",$id));
 $miSmarty->display('details.tpl');

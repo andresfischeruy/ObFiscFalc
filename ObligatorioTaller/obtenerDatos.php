@@ -157,19 +157,26 @@ function guardarImagenes($titulo, $foto) {
     return $exito;
 }
 
-function levantarImagenes($directorio) {
+function levantarImagenes($directorio,$publi) {
     $fotos = array();
+
     if (is_dir($directorio)) {
         $d = dir($directorio);
+        $idPublicacion= intval($publi, 10);
         while (false !== ($file = $d->read())) {
-            if ($file != "." && $file != ".."){
+            $publiRecorrida = intval(obtenerIdPublicacionSegunFoto($file),10);
+            if ($file != "." && $file != ".." && $idPublicacion == $publiRecorrida) {
                 $fotos[] = $directorio . $file;
             }
-                
         }
         $d->close();
     }
     return $fotos;
+}
+
+function obtenerIdPublicacionSegunFoto($dirFoto) {
+    $idPubliFoto = explode(" ", $dirFoto);
+    return $idPubliFoto[0];
 }
 
 ///////////////////////////////////////
