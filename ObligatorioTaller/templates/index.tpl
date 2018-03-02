@@ -8,7 +8,7 @@
         <meta name="author" content="">
 
         <!-- Bootstrap style --> 
-        <link id="callCss" rel="stylesheet" href="themes/bootshop/bootstrap.min.css" media="screen"/>
+        <link id="callCss" rel="stylesheet" href="themes/css/bootstrap.min.css" media="screen"/>
         <link href="themes/css/base.css" rel="stylesheet" media="screen"/>
         <!-- Bootstrap style responsive -->	
         <link href="themes/css/bootstrap-responsive.min.css" rel="stylesheet"/>

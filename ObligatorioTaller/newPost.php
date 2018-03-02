@@ -4,11 +4,6 @@ require_once 'obtenerDatos.php';
 require_once 'libs/Smarty.class.php';
 require_once 'class.Conexion.BD.php';
 
-$miSmarty = getSmarty();
-$miSmarty->assign("especies", obtenerEspecies());
-$miSmarty->assign("razas", obtenerRazas());
-$miSmarty->assign("barrios", obtenerBarrios());
-
 $titulo = $_POST['titulo'];
 $descripcion = $_POST['descripcion'];
 $tipo = $_POST['tipo'];
@@ -22,6 +17,12 @@ $abierto = 1;
 $usuario = usuarioLogueado();
 $usuarioID = (int) devolverIdUsuario($usuario);
 $foto = $_FILES['img'];
+
+
+$miSmarty = getSmarty();
+$miSmarty->assign("especies", obtenerEspecies());
+$miSmarty->assign("razas", obtenerRazasSinParam());
+$miSmarty->assign("barrios", obtenerBarrios());
 
 
 
