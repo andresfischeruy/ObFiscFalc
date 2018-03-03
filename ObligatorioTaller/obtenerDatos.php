@@ -87,7 +87,6 @@ function obtenerPublicacionesAbiertasPorUsuario($usr) {
 }
 
 function obtenerPublicacionPorID($iden) {
-
     $cn = getConexion();
     $cn->consulta(
             "select * from publicaciones where id=:iden", array(
@@ -185,56 +184,9 @@ function obtenerIdPublicacionSegunFoto($dirFoto) {
     return $idPubliFoto[0];
 }
 
-///////////////////////////////////////
-//Alta publicacion
-function guardarPublicacion($titulo, $descripcion, $tipo, $especieid, $raza, $barrio, $abierto, $usuario, $foto) {
 
-    $sql = "INSERT INTO publicaciones (id, titulo, descripcion, tipo, especie_id, raza_id, barrio_id, abierto, usuario_id, exitoso, latitud, longitud)";
-    $sql .= " VALUES (:id, :titulo, :descripcion, :tipo, :especie_id, :raza_id, :barrio_id, :abierto, :usuario_id, :exitoso, :latitud, :longitud)";
-    $cn = getConexion();
-    $parametros = array(
-        array("id", '', 'int'),
-        array("titulo", $titulo, 'string'),
-        array("descripcion", $descripcion, 'string'),
-        array("tipo", $tipo, 'char'),
-        array("especie_id", $especieid, 'int'),
-        array("raza_id", $raza, 'int'),
-        array("barrio_id", $barrio, 'int'),
-        array("abierto", $abierto, 'bit'),
-        array("usuario_id", $usuario, 'int'),
-        array("exitoso", '', 'bit'),
-        array("latitud", '', 'decimal'),
-        array("longitud", '', 'decimal')
-    );
-
-    if (count($foto['name']) == 1 && strlen($foto['name'][0]) == 0) {
-        return false;
-    }
-
-    if (!$cn->consulta($sql, $parametros)) {
-        return false;
-    }
-    $idPubli = $cn->ultimoIdInsert();
-    if (!guardarImagenes($idPubli, $foto)) {
-        return false;
-    }
-    return true;
-}
-
-//Obtener Preguntas
-
-function obtenerPreguntas($idP) {
-    $cn = getConexion();
-    $cn->consulta(
-            "select * from preguntas where id_publicacion=:id", array(
-        array("id", $idP, 'int')
-    ));
-
-    return $cn->restantesRegistros();
-}
 
 //Cerrar publicacion
-
 function cerrarPublicacion($idPubli, $exito) {
 
     $sql = "UPDATE publicaciones SET abierto=0, exitoso=:exitoso";
@@ -326,41 +278,7 @@ function existeEmail($email) {
     return $usuarioEmail != null;
 }
 
-//Estadisticas
 
-function devolverCantidadDePubliXTipo($tipo) {
-    $cn = getConexion();
-    $cn->consulta(
-            "select count(*) as cant from publicaciones where tipo=:tipo", array(
-        array('tipo', $tipo, 'char')
-    ));
-    $contador = $cn->siguienteRegistro();
-    return $contador['cant'];
-}
-
-function devolverCantidadXTipoEspecieEstado($cantReg, $tipo, $estado) {
-    for ($i = 1; $i < $cantReg; $i++) {
-        $cn = getConexion();
-        $cn->consulta(
-                "select count(*) as cant from publicaciones where tipo=:tipo and especie_id=:esp and abierto=:estado", array(
-            array('tipo', $tipo, 'char'),
-            array('esp', $i, 'int'),
-            array('estado', $estado, 'int')
-        ));
-        $contador[$i] = $cn->siguienteRegistro();
-    }
-    return $contador;
-}
-
-function devolverCantidadSegunEstadoYExito($exito) {
-    $cn = getConexion();
-    $cn->consulta(
-            "select count(*) as cant from publicaciones where abierto=0 and exitoso=:exito", array(
-        array('exito', $exito, 'int')));
-    $contador = $cn->siguienteRegistro();
-    
-    return $contador['cant'];
-}
 
 
 //Configuración de Smarty
