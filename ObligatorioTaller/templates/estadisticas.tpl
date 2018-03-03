@@ -45,7 +45,7 @@
                                 <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success">Login</span></a>
                             {else}
                                 <li class=""><a href="newPost.php">Nueva Publicación</a></li>
-                                <li class=""><a href="#">Estadisticas</a></li>
+                                <li class=""><a href="cerrarPublicacion.php">Cerrar Publicación</a></li>
                                 <a href="doLogout.php" role="button" style="padding-right:0"><span class="btn btn-large btn-success">Salir</span></a>
                             {/if}
                             <div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="false" >
@@ -96,7 +96,7 @@
 
                         </br><h4>Éxito de publicaciones cerradas</h4></br>
                         Cantidad de mascotas que se reunieron con su dueño: {$contadorExitosas}</br>
-                        Cantidad de mascotas que no se reunieron con su dueño: {$contadorNoExitosas}</br>
+                        Cantidad de mascotas que no se reunieron con su dueño: {$contadorNoExitosas}</br></br></br>
                     </div>
 
                 </div>

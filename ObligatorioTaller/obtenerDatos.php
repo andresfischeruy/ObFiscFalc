@@ -243,6 +243,7 @@ function cerrarPublicacion($idPubli, $exito) {
     $cn->consulta($sql, array(
         array("id", $idPubli, 'int'),
         array("exitoso", $exito, 'int')));
+
 }
 
 ///////////////////////////////////////
@@ -358,10 +359,9 @@ function devolverCantidadSegunEstadoYExito($exito) {
             "select count(*) as cant from publicaciones where abierto=0 and exitoso=:exito", array(
         array('exito', $exito, 'int')));
     $contador = $cn->siguienteRegistro();
-    
+
     return $contador['cant'];
 }
-
 
 //Configuración de Smarty
 function getSmarty() {

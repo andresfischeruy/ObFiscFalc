@@ -51,7 +51,7 @@
                             {else}
                                 <li class=""><a href="newPost.php">Nueva Publicación</a></li>
                                 <li class=""><a href="cerrarPublicacion.php">Cerrar Publicación</a></li>
-                                <li class=""><a href="#">Estadisticas</a></li>
+                                <li class=""><a href="estadisticas.php">Estadisticas</a></li>
                                 <a href="doLogout.php" role="button" style="padding-right:0"><span class="btn btn-large btn-success">Salir</span></a>
                             {/if}
 

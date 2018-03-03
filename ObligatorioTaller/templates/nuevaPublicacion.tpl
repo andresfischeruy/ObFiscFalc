@@ -44,8 +44,8 @@
                                 <li class=""><a href="register.php">Registrarse</a></li>
                                 <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success">Login</span></a>
                             {else}
-                                <li class=""><a href="newPost.php">Nueva Publicación</a></li>
-                                <li class=""><a href="#">Estadisticas</a></li>
+                                <li class=""><a href="cerrarPublicacion.php">Cerrar Publicación</a></li>
+                                <li class=""><a href="estadisticas.php">Estadisticas</a></li>
                                 <a href="doLogout.php" role="button" style="padding-right:0"><span class="btn btn-large btn-success">Salir</span></a>
                             {/if}
                             <div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="false" >
