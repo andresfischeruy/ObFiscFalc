@@ -24,3 +24,15 @@ $preguntas = obtenerPreguntas($id);
 $miSmarty->assign("preguntas", $preguntas);
 $miSmarty->assign('fotos', levantarImagenes("./fotos/",$id));
 $miSmarty->display('details.tpl');
+
+
+//Obtener Preguntas
+function obtenerPreguntas($idP) {
+    $cn = getConexion();
+    $cn->consulta(
+            "select * from preguntas where id_publicacion=:id", array(
+        array("id", $idP, 'int')
+    ));
+
+    return $cn->restantesRegistros();
+}
