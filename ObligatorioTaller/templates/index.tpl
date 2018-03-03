@@ -53,7 +53,7 @@
                             {else}
                                 <li class=""><a href="newPost.php">Nueva Publicación</a></li>
                                 <li class=""><a href="cerrarPublicacion.php">Cerrar Publicación</a></li>
-                                <li class=""><a href="#">Estadisticas</a></li>
+                                <li class=""><a href="estadisticas.php">Estadisticas</a></li>
                                 <a href="doLogout.php" role="button" style="padding-right:0"><span class="btn btn-large btn-success">Salir</span></a>
                             {/if}
 
@@ -72,16 +72,11 @@
                                         <div class="control-group">
                                             <input type="password" id="inputPassword" placeholder="Password" name="clave">
                                         </div>
-
                                         <input type="submit" class="btn btn-success" value="Iniciar sesión" >
                                         <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
                                     </form>		
 
                                 </div>
-
-
-
-
                             </div>
                             </li>
                         </ul>
@@ -203,8 +198,8 @@
                                 <a  href="details.php?id={$pu.id}"> <img src="{$fotos[0]}"  alt="Foto de Publicacion"/></a>
                                 <div class="caption">
                                     <h5><a  href="details.php?id={$pu.id}">{$pu.titulo}</a></h5>
-                                    {if {$pu.tipo} == 'E'}
-                                         <h6> Mascota encontrada </h6>
+                                        {if {$pu.tipo} == 'E'}
+                                        <h6> Mascota encontrada </h6>
                                     {else}
                                         <h6> Mascota perdida </h6>
                                     {/if}

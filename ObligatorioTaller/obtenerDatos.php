@@ -301,9 +301,18 @@ function devolverNombreEspecie($especie) {
     return $cn->siguienteRegistro();
 }
 
+function devolverNombreRaza($raza) {
+    $cn = getConexion();
+    $cn->consulta(
+            "select nombre from razas where id=:raza", array(
+        array("raza", $raza, 'int')
+    ));
+    return $cn->siguienteRegistro();
+}
+
 // Validar password
 function validarPass($clave) {
-    return strlen($clave) > 8 && preg_match('`[a-zA-Z]`', $clave) && preg_match('`[0-9]`', $clave);
+    return strlen($clave) >= 8 && preg_match('`[a-zA-Z]`', $clave) && preg_match('`[0-9]`', $clave);
 }
 
 //Validar email repetido
@@ -315,6 +324,42 @@ function existeEmail($email) {
     ));
     $usuarioEmail = $cn->siguienteRegistro();
     return $usuarioEmail != null;
+}
+
+//Estadisticas
+
+function devolverCantidadDePubliXTipo($tipo) {
+    $cn = getConexion();
+    $cn->consulta(
+            "select count(*) as cant from publicaciones where tipo=:tipo", array(
+        array('tipo', $tipo, 'char')
+    ));
+    $contador = $cn->siguienteRegistro();
+    return $contador['cant'];
+}
+
+function devolverCantidadXTipoEspecieEstado($cantReg, $tipo, $estado) {
+    for ($i = 1; $i < $cantReg; $i++) {
+        $cn = getConexion();
+        $cn->consulta(
+                "select count(*) as cant from publicaciones where tipo=:tipo and especie_id=:esp and abierto=:estado", array(
+            array('tipo', $tipo, 'char'),
+            array('esp', $i, 'int'),
+            array('estado', $estado, 'int')
+        ));
+        $contador[$i] = $cn->siguienteRegistro();
+    }
+    return $contador;
+}
+
+function devolverCantidadSegunEstadoYExito($exito) {
+    $cn = getConexion();
+    $cn->consulta(
+            "select count(*) as cant from publicaciones where abierto=0 and exitoso=:exito", array(
+        array('exito', $exito, 'int')));
+    $contador = $cn->siguienteRegistro();
+    
+    return $contador['cant'];
 }
 
 

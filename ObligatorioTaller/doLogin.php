@@ -7,9 +7,5 @@ $clave = $_POST['clave'];
 
 $logueado = login($usuario, $clave);
 
-if($logueado != null) {
-    header('location:index.php');
-} else {
-    header('location:mal.php');
-}
+header('location:index.php');
 

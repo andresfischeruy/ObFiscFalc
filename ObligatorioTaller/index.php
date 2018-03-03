@@ -39,6 +39,9 @@ $miSmarty->assign("barrios", obtenerBarrios());
 
 //Carga de Publicaciones
 $miSmarty->assign("publicaciones", obtenerPublicacionPorTipo($tipo, $especie, $raza, $barrio));
-$miSmarty->assign('fotos', levantarImagenes("./fotos/",54));
+$miSmarty->assign('fotos', levantarImagenes("./fotos/",4));
+
+
+
 $miSmarty->display('index.tpl');
 

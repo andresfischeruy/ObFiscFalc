@@ -2,7 +2,7 @@
 <html lang="es">
     <head>
         <meta charset="utf-8">
-        <title>Registrar aviso</title>
+        <title>Estadisticas</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
@@ -77,70 +77,27 @@
         <div id="mainBody">
             <div class="container">
                 <hr class="soften">
-                <h1>Nuevo aviso</h1>
+                <h1>Estadisticas</h1>
                 <hr class="soften"/>	
                 <div class="row">
 
                     <div class="span4">
-                        <h4>Ingrese los datos de su publicación</h4>
-                        <form class="form-horizontal" method="POST" action="newPost.php" enctype="multipart/form-data">
-                            <div  class='{$tipoAlerta}'>
-                                <button type='button' class='close' data-dismiss='alert'>×</button>
-                                {$mensajeAlerta}
-                            </div>
-                            
-                            <fieldset>
-                                <div class="control-group">
-                                    <input type="text" name ="titulo" placeholder="* Titulo de la publicacion" class="input-xlarge"/>
-                                </div>
-                                <div class="control-group">
-                                    *Especie <select name="comboEspecies">
-                                        {foreach from=$especies item=esp}
-                                            <option value="{$esp.nombre}"> {$esp.nombre} </option>
-                                        {/foreach}	
-                                    </select>
+                        <h4>Total de publicaciones</h4>
+                        Encontradas: {$contadorEncontradas} </br>
+                        Perdidas: {$contadorPerdidas} </br>
 
-                                </div>
-                                <div class="control-group">
-                                    *Raza <select name="comboRazas">
-                                        {foreach from=$razas item=raz}
-                                            <option value="{$raz.nombre}"> {$raz.nombre} </option>
-                                        {/foreach}	
-                                    </select>
-                                </div>
-                                <div class="control-group">
-                                    *Barrio <select name="comboBarrios">
-                                        {foreach from=$barrios item=bar}
-                                            <option value="{$bar.nombre}"> {$bar.nombre} </option>
-                                        {/foreach}	
-                                    </select>
-                                </div>
-                                <div class="control-group">
-                                    <textarea rows="3" id="textarea" name="descripcion" placeholder="* Descripción" class="input-xlarge"></textarea>
-                                </div>
+                        </br><h4>Publicaciones abiertas - Por especie</h4></br>
+                        Encontrados: {$arrayEncAbiertas}</br>
+                        Perdidas: {$arrayPerdAbiertas}
+                        </br>
+                        </br><h4>Publicaciones cerradas - Por especie</h4></br>
+                        Encontrados: {$arrayEncCerradas}</br>
+                        Perdidas: {$arrayPerdCerradas}</br>
 
-                                <fieldset>
-                                    <label>
-                                        <input type="radio" name = "tipo" value = "Perdido" checked = true> Perdido
-                                    </label>
-                                    <label>
-                                        <input type="radio" name = "tipo" value = "Encontrado"> Encontrado
-                                    </label>
-                                </fieldset>
-
-                                <div class="span4">
-                                    <h4>Agregar imágenes</h4>
-                                    <div>
-                                        <input type="file" class="form-control" id="imagenes" name="img[]" multiple="multiple">
-                                    </div>
-                                </div>
-                            </fieldset>
-                            <button id = "btnPublicar" class="btn btn-large" type="submit">Publicar</button>
-                            
-                        </form>
+                        </br><h4>Éxito de publicaciones cerradas</h4></br>
+                        Cantidad de mascotas que se reunieron con su dueño: {$contadorExitosas}</br>
+                        Cantidad de mascotas que no se reunieron con su dueño: {$contadorNoExitosas}</br>
                     </div>
-
-
 
                 </div>
 

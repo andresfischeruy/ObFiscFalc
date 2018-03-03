@@ -122,7 +122,8 @@
                                     {else}
                                         <small> Perdido</small> <br>
                                     {/if}
-                                    <small> Especie de mascota: {$especie.nombre}  </small>
+                                    <small> Especie de mascota: {$especie.nombre}  </small><br>
+                                    <small> Raza de mascota: {$raza.nombre}  </small>
                                     <p>
                                         {$publicacion.descripcion}
                                     </p>
