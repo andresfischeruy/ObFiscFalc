@@ -84,7 +84,7 @@
     position: relative;
 }
 
-#inputPregunta {
+#inputPregunta, #inputRespuesta{
     width: 650px;
     height:  60px;
 }

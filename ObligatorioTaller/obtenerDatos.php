@@ -96,6 +96,14 @@ function obtenerPublicacionPorID($iden) {
     return $cn->siguienteRegistro();
 }
 
+function obtenerPreguntasSinRespuesta($idP) {
+    $cn = getConexion();
+    $cn->consulta(
+            "select texto from preguntas where respuesta='' and id_publicacion=:id", array(
+        array('id', $idP, 'int')));
+    return $cn->restantesRegistros();
+}
+
 ////////////////////////////////////////
 //Login de Usuario
 function login($usuario, $clave) {
@@ -184,8 +192,6 @@ function obtenerIdPublicacionSegunFoto($dirFoto) {
     return $idPubliFoto[0];
 }
 
-
-
 //Cerrar publicacion
 function cerrarPublicacion($idPubli, $exito) {
 
@@ -195,7 +201,6 @@ function cerrarPublicacion($idPubli, $exito) {
     $cn->consulta($sql, array(
         array("id", $idPubli, 'int'),
         array("exitoso", $exito, 'int')));
-
 }
 
 ///////////////////////////////////////
@@ -263,6 +268,16 @@ function devolverNombreRaza($raza) {
     return $cn->siguienteRegistro();
 }
 
+function devolverIdPregunta($textoPregunta) {
+    $cn = getConexion();
+    $cn->consulta(
+            "select id from preguntas where texto=:texto", array(
+        array("texto", $textoPregunta, 'string')
+    ));
+    $idPregu = $cn->siguienteRegistro();
+    return $idPregu['id'];
+}
+
 // Validar password
 function validarPass($clave) {
     return strlen($clave) >= 8 && preg_match('`[a-zA-Z]`', $clave) && preg_match('`[0-9]`', $clave);
@@ -278,9 +293,6 @@ function existeEmail($email) {
     $usuarioEmail = $cn->siguienteRegistro();
     return $usuarioEmail != null;
 }
-
-
-
 
 //Configuración de Smarty
 function getSmarty() {

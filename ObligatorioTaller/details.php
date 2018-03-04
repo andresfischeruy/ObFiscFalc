@@ -27,6 +27,8 @@ $miSmarty->assign("raza", devolverNombreRaza($publicacion['raza_id']));
 //Carga de preguntas
 $preguntas = obtenerPreguntas($id);
 $miSmarty->assign("preguntas", $preguntas);
+$miSmarty->assign("preguntasSinRespuesta", obtenerPreguntasSinRespuesta($id));
+$miSmarty->assign("usuarioPublicador", $publicacion['usuario_id']);
 $miSmarty->assign('fotos', levantarImagenes("./fotos/",$id));
 $miSmarty->display("header.tpl");
 $miSmarty->display('details.tpl');
@@ -45,3 +47,9 @@ function obtenerPreguntas($idP) {
 }
 
 guardarPregunta($idUsuario, $texto, $id);
+
+$pregunta = $_POST['comboPreguntas'];
+$idPregunta = (int) devolverIdPregunta($pregunta);
+$respuesta = $_POST['respuesta'];
+
+responderPregunta($idPregunta, $respuesta);

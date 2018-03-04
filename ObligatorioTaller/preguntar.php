@@ -21,4 +21,15 @@ function guardarPregunta($usuario, $pregunta, $idPublicacion) {
     );
 }
 
+//Cerrar publicacion
+function responderPregunta($idPregunta, $texto) {
+    $sql = "UPDATE preguntas SET respuesta=:resp";
+    $sql .= " where id=:id";
+    $cn = getConexion();
+    $cn->consulta($sql, array(
+        array("id", $idPregunta, 'int'),
+        array("resp", $texto, 'string')));
+}
+
+
 
