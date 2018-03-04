@@ -43,6 +43,6 @@ $miSmarty->assign("publicaciones", $publicaciones);
 $miSmarty->assign('fotos', levantarImagenes("./fotos/",4));
 
     
-
+$miSmarty->display('header.tpl');
 $miSmarty->display('index.tpl');
 

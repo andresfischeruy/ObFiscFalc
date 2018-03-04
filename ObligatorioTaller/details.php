@@ -23,6 +23,7 @@ $miSmarty->assign("raza", devolverNombreRaza($publicacion['raza_id']));
 $preguntas = obtenerPreguntas($id);
 $miSmarty->assign("preguntas", $preguntas);
 $miSmarty->assign('fotos', levantarImagenes("./fotos/",$id));
+$miSmarty->display("header.tpl");
 $miSmarty->display('details.tpl');
 
 

@@ -28,7 +28,7 @@ if(existeEmail($email)){
     
 }
 
-
+$miSmarty->display("header.tpl");
 $miSmarty->display("registro.tpl");
 
 
