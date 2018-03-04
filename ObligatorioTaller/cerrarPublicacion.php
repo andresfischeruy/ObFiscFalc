@@ -24,7 +24,9 @@ function publicacionConExito() {
 }
 
 cerrarPublicacion($publiID, publicacionConExito());
+$miSmarty->display("header.tpl");
 $miSmarty->display('cerrarPublicacion.tpl');
+$miSmarty->display("footer.tpl");
 
 
 
