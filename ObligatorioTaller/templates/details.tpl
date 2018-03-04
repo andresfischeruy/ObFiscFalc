@@ -43,12 +43,13 @@
                         </form>
                         <ul id="topMenu" class="nav pull-right">
 
-
+                            <li class=""><a href="index.php">Home</a></li> 
                             <li class="">
                                 {if (!isset($usuario))}
                                 <li class=""><a href="register.php">Registrarse</a></li>
                                 <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success">Login</span></a>
                             {else}
+
                                 <li class=""><a href="newPost.php">Nueva Publicación</a></li>
                                 <li class=""><a href="cerrarPublicacion.php">Cerrar Publicación</a></li>
                                 <li class=""><a href="estadisticas.php">Estadisticas</a></li>
@@ -152,8 +153,49 @@
                         </div>
                     {/foreach}
 
-            
-                   
+                    {if (isset($usuario))}
+                        <a href="#preguntar" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success">Nueva pregunta</span></a>
+                        <div id="preguntar" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="preguntar" aria-hidden="false" >
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h3>Nueva pregunta</h3>
+                            </div>
+                            <div class="modal-body">
+                                <form  method="POST" action="preguntar.php" >
+                                    <div class="col-sm-10">
+                                        <textarea id = 'inputPregunta' class="form-control" rows="3" ></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-success">Preguntar</button>
+                                    <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+                                </form>
+                            </div>
+                        </div>
+                    {else}
+                        <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success">Inicia sesión para realizar una pregunta</span></a>
+                        <div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="false" >
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h3>Iniciar sesion</h3>
+                            </div>
+
+
+                            <div class="modal-body">
+                                <form  method="POST" action="doLogin.php" >
+                                    <div class="control-group">								
+                                        <input type="text" id="inputEmail" placeholder="Email" name="usuario">
+                                    </div>
+                                    <div class="control-group">
+                                        <input type="password" id="inputPassword" placeholder="Password" name="clave">
+                                    </div>
+
+                                    <input type="submit" class="btn btn-success" value="Iniciar sesión" >
+                                    <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+                                </form>		
+                            </div>
+                        </div>
+                    {/if}
+
+
                 </div>
             </div>
 

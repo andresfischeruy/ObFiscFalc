@@ -83,3 +83,8 @@
     margin-top: 20px;
     position: relative;
 }
+
+#inputPregunta {
+    width: 450px;
+    height:  60px;
+}
