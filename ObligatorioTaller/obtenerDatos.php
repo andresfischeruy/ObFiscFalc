@@ -187,6 +187,14 @@ function levantarImagenes($directorio, $publi) {
     return $fotos;
 }
 
+function devolverFotosSinLaPrimera($fotos){
+    $resultado = array();
+    for ($i = 1; $i < count($fotos); $i++) {
+        $resultado[] = $fotos[$i];
+    }
+    return $resultado;
+}
+
 function obtenerIdPublicacionSegunFoto($dirFoto) {
     $idPubliFoto = explode(" ", $dirFoto);
     return $idPubliFoto[0];

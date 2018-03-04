@@ -14,7 +14,7 @@ if (isset($_GET['id'])) {
 $usuario = usuarioLogueado();
 $idUsuario = devolverIdUsuario($usuario);
 $texto = $_POST['pregunta'];
-
+$arrayFotos = levantarImagenes("./fotos/",$id);
 $miSmarty = getSmarty();
 
 //Carga de publicacion
@@ -29,7 +29,8 @@ $preguntas = obtenerPreguntas($id);
 $miSmarty->assign("preguntas", $preguntas);
 $miSmarty->assign("preguntasSinRespuesta", obtenerPreguntasSinRespuesta($id));
 $miSmarty->assign("usuarioPublicador", $publicacion['usuario_id']);
-$miSmarty->assign('fotos', levantarImagenes("./fotos/",$id));
+$miSmarty->assign('primerFoto', $arrayFotos[0] );
+$miSmarty->assign('fotos', devolverFotosSinLaPrimera($arrayFotos) );
 $miSmarty->display("header.tpl");
 $miSmarty->display('details.tpl');
 $miSmarty->display("footer.tpl");

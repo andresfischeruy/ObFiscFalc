@@ -12,7 +12,7 @@
                             <div class="carousel-inner">
                                 <div class="item active">
                                     <div class="container">
-                                        <img src="{$fotos[0]}" />
+                                        <img src="{$primerFoto}" />
                                     </div>
                                 </div>
                                 {foreach from=$fotos item=src}
@@ -121,8 +121,6 @@
                         </div>
                     </div>
                 {/if}
-
-
 
             </div>
         </div>
