@@ -1,6 +1,7 @@
 <?php
 
 require_once 'obtenerDatos.php';
+require_once 'preguntar.php';
 require_once 'libs/Smarty.class.php';
 
 
@@ -9,6 +10,10 @@ $id=1;
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 }
+
+$usuario = usuarioLogueado();
+$idUsuario = devolverIdUsuario($usuario);
+$texto = $_POST['pregunta'];
 
 $miSmarty = getSmarty();
 
@@ -38,3 +43,5 @@ function obtenerPreguntas($idP) {
 
     return $cn->restantesRegistros();
 }
+
+guardarPregunta($idUsuario, $texto, $id);
