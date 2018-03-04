@@ -62,6 +62,7 @@
                                 {$preg.respuesta}
                             </div>
                         </div>
+                             
                     </div>
                 </div>
             {/foreach}
