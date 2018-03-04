@@ -76,4 +76,5 @@ if (strlen($titulo) == 0 || strlen($descripcion) == 0) {
 
 $miSmarty->display("header.tpl");
 $miSmarty->display("nuevaPublicacion.tpl");
+$miSmarty->display("footer.tpl");
 

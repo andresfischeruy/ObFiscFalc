@@ -25,6 +25,7 @@ $miSmarty->assign("preguntas", $preguntas);
 $miSmarty->assign('fotos', levantarImagenes("./fotos/",$id));
 $miSmarty->display("header.tpl");
 $miSmarty->display('details.tpl');
+$miSmarty->display("footer.tpl");
 
 
 //Obtener Preguntas
