@@ -57,22 +57,28 @@ function obtenerTodasLasPublicacionesAbiertas() {
     return $cn->restantesRegistros();
 }
 
-function obtenerPublicacionPorTipo($ti, $es, $ra, $ba) {
+function obtenerPublicaciones($tipo, $especie, $raza, $barrio) {
+    $cn = getConexion();
 
-    if (!isset($ti) && !isset($es) && !isset($ra) && !isset($ba)) {
-        return obtenerTodasLasPublicacionesAbiertas();
+    if (empty($tipo) && empty($especie) && empty($raza) && empty($barrio)) {
+        $cn->consulta("select * from publicaciones where abierto=1");
+    }
+
+    if (!empty($tipo) && empty($especie) && empty($raza) && empty($barrio)) {
+        $cn->consulta(
+                "select * from publicaciones where tipo=:tipo and abierto=1", array(
+            array("tipo", $tipo, 'char'),
+        ));
     }
 
 
-    $cn = getConexion();
-    $cn->consulta(
-            "select * from publicaciones where tipo=:ti AND especie_id=:es AND raza_id=:ra AND barrio_id=:ba", array(
-        array("ti", $ti, 'char'),
-        array("es", $es, 'int'),
-        array("ra", $ra, 'int'),
-        array("ba", $ba, 'int')
-    ));
-
+    if (!empty($tipo) && !empty($especie) && empty($raza) && empty($barrio)) {
+        $cn->consulta(
+                "select * from publicaciones where especie_id=:especie and tipo=:tip and abierto=1", array(
+            array("especie", $especie, 'int'),
+            array("tip", $tipo, 'char'),
+        ));
+    }
     return $cn->restantesRegistros();
 }
 
@@ -187,7 +193,7 @@ function levantarImagenes($directorio, $publi) {
     return $fotos;
 }
 
-function devolverFotosSinLaPrimera($fotos){
+function devolverFotosSinLaPrimera($fotos) {
     $resultado = array();
     for ($i = 1; $i < count($fotos); $i++) {
         $resultado[] = $fotos[$i];
