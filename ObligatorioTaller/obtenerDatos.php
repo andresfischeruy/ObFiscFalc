@@ -88,6 +88,18 @@ function obtenerPublicaciones($tipo, $especie, $raza, $barrio) {
     return $cn->restantesRegistros();
 }
 
+
+function obtenerFotos($publicaciones){
+    while (list($k,$valor) = each($publicaciones)) {
+        $publicaciones[$k]['fotos'] = levantarImagenes("./fotos/" , $valor["id"]);
+    }    
+   
+    reset ($publicaciones);
+    return $publicaciones;
+}
+
+
+
 function obtenerPublicacionesAbiertasPorUsuario($usr) {
     $cn = getConexion();
     $cn->consulta(
