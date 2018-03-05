@@ -1,59 +1,6 @@
 <div id="mainBody">
     <div class="container">
         <div class="row">
-
-
-            <p class="ml-auto">
-            <div class="dropdown">
-
-                <button class="btn btn-secondary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">Perdido/Encontrado<span class="caret"></span></button>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?tipo=E&especie={$especie}&raza={$raza}&barrio={$barrio}">Encontrado</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?tipo=P&especie={$especie}&raza={$raza}&barrio={$barrio}">Perdido</a></li>
-                </ul>
-
-            </div>
-            </p>
-
-            <p class="ml-auto">
-            <div class="dropdown">
-
-                <button class="btn btn-secondary dropdown-toggle " id="menu1" type="button" data-toggle="dropdown">Especies<span class="caret"></span></button>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-
-                    {foreach from=$especies item=espp}
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?tipo={$tipo}&especie={$espp.id}&raza={$raza}&barrio={$barrio}">{$espp.nombre}</a></li>
-                        {/foreach}	
-                </ul>
-
-            </div>
-            </p>
-            <p class="ml-auto">
-                {if $especie}
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">Razas<span class="caret"></span></button>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-
-                        {foreach from=$razas item=razz}
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?tipo={$tipo}&especie={$especie}&raza={$razz.id}&barrio={$barrio}">{$razz.nombre}</a></li>
-                            {/foreach}	
-                    </ul>
-                </div>
-            {/if}
-            </p>
-            <p class="ml-auto">
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">Barrios<span class="caret"></span></button>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-
-                    {foreach from=$barrios item=barr}
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?tipo={$tipo}&especie={$especie}&raza={$raza}&barrio={$barr.id}">{$barr.nombre}</a></li>
-                        {/foreach}	
-                </ul>
-            </div>
-            </p>
-
-
             <!-- Sidebar ================================================== -->
             <div id="sidebar" class="span3">
 

@@ -58,27 +58,33 @@ function obtenerTodasLasPublicacionesAbiertas() {
 }
 
 function obtenerPublicaciones($tipo, $especie, $raza, $barrio) {
+    $sql = "select * from publicaciones where abierto=1";
+    $param = array();
+
     $cn = getConexion();
 
-    if (empty($tipo) && empty($especie) && empty($raza) && empty($barrio)) {
-        $cn->consulta("select * from publicaciones where abierto=1");
-    }
-
-    if (!empty($tipo) && empty($especie) && empty($raza) && empty($barrio)) {
-        $cn->consulta(
-                "select * from publicaciones where tipo=:tipo and abierto=1", array(
-            array("tipo", $tipo, 'char'),
-        ));
+    if (!empty($tipo)) {
+        $sql .= " and tipo=:tipo";
+        $param [] = array("tipo", $tipo, 'char');
     }
 
 
-    if (!empty($tipo) && !empty($especie) && empty($raza) && empty($barrio)) {
-        $cn->consulta(
-                "select * from publicaciones where especie_id=:especie and tipo=:tip and abierto=1", array(
-            array("especie", $especie, 'int'),
-            array("tip", $tipo, 'char'),
-        ));
+    if (!empty($barrio)) {
+        $sql .= " and barrio_id=:barrio";
+        $param [] = array("barrio", $barrio, 'int');
     }
+
+    if (!empty($especie)) {
+        $sql .= " and especie_id=:especie";
+        $param [] = array("especie", $especie, 'int');
+
+        if (!empty($raza)) {
+            $sql .= " and raza_id=:raza";
+            $param [] = array("raza", $raza, 'int');
+        }
+    }
+    
+    $cn->consulta($sql, $param);
     return $cn->restantesRegistros();
 }
 
