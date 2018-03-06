@@ -61,7 +61,5 @@ $miSmarty->assign("arrayPerdCerradas", $contadorXespPCer);
 $miSmarty->assign("contadorExitosas", $contadorExitosas);
 $miSmarty->assign("contadorNoExitosas", $contadorNoExitosas);
 
-$miSmarty->display("header.tpl");
 $miSmarty->display('estadisticas.tpl');
-$miSmarty->display("footer.tpl");
 

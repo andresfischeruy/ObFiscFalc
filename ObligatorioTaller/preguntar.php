@@ -1,7 +1,5 @@
 <?php
-
 require_once 'obtenerDatos.php';
-
 
 
 function guardarPregunta($usuario, $pregunta, $idPublicacion) {
@@ -21,7 +19,6 @@ function guardarPregunta($usuario, $pregunta, $idPublicacion) {
     );
 }
 
-//Cerrar publicacion
 function responderPregunta($idPregunta, $texto) {
     $sql = "UPDATE preguntas SET respuesta=:resp";
     $sql .= " where id=:id";

@@ -1,3 +1,4 @@
+{include file="header.tpl"}
 <div id="mainBody">
     <div class="container">
         <hr class="soften">
@@ -37,3 +38,4 @@
 
     </div>
 </div>
+{include file="footer.tpl"}

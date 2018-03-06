@@ -31,9 +31,7 @@ $miSmarty->assign("preguntasSinRespuesta", obtenerPreguntasSinRespuesta($id));
 $miSmarty->assign("usuarioPublicador", $publicacion['usuario_id']);
 $miSmarty->assign('primerFoto', $arrayFotos[0] );
 $miSmarty->assign('fotos', devolverFotosSinLaPrimera($arrayFotos) );
-$miSmarty->display("header.tpl");
 $miSmarty->display('details.tpl');
-$miSmarty->display("footer.tpl");
 
 
 //Obtener Preguntas

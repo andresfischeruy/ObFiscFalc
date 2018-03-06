@@ -1,45 +1,47 @@
-        <div id="mainBody">
-            <div class="container">
-                <hr class="soften">
-                <h1>Cerrar publicacion</h1>
-                <hr class="soften"/>	
-                <div class="row">
+{include file="header.tpl"}
+<div id="mainBody">
+    <div class="container">
+        <hr class="soften">
+        <h1>Cerrar publicacion</h1>
+        <hr class="soften"/>	
+        <div class="row">
 
-                    <div class="span4">
-                        <h4>Mis publicaciones</h4>
-                        <form class="form-horizontal" method="POST" action="cerrarPublicacion.php">
-                            <fieldset>
-                               
-                                <div class="control-group">
-                                    <select name="comboPublicaciones">
-                                        {foreach from=$publicaciones item=publi}
-                                            <option value="{$publi.titulo}"> {$publi.titulo} </option>
-                                        {/foreach}	
-                                    </select>
+            <div class="span4">
+                <h4>Mis publicaciones</h4>
+                <form class="form-horizontal" method="POST" action="cerrarPublicacion.php">
+                    <fieldset>
 
-                                </div>
-                                
-                                <fieldset>
-                                    ¿La mascota se reunio con su dueño?
-                                    <label>
-                                        <input type="radio" name = "tipo" value = "Reunido" checked = true> Si
-                                    </label>
-                                    <label>
-                                        <input type="radio" name = "tipo" value = "NoReunido"> No
-                                    </label>
-                                </fieldset>
+                        <div class="control-group">
+                            <select name="comboPublicaciones">
+                                {foreach from=$publicaciones item=publi}
+                                    <option value="{$publi.titulo}"> {$publi.titulo} </option>
+                                {/foreach}	
+                            </select>
 
-                                <button id = "btnPublicar" class="btn btn-large" type="submit">Cerrar publicación</button>
+                        </div>
 
-                            </fieldset>
+                        <fieldset>
+                            ¿La mascota se reunio con su dueño?
+                            <label>
+                                <input type="radio" name = "tipo" value = "Reunido" checked = true> Si
+                            </label>
+                            <label>
+                                <input type="radio" name = "tipo" value = "NoReunido"> No
+                            </label>
+                        </fieldset>
 
-                            
-                        </form>
-                    </div>
+                        <button id = "btnPublicar" class="btn btn-large" type="submit">Cerrar publicación</button>
 
-                    
+                    </fieldset>
 
-                </div>
 
+                </form>
             </div>
+
+
+
         </div>
+
+    </div>
+</div>
+{include file="footer.tpl"}
