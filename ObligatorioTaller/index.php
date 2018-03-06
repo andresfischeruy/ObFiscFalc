@@ -43,8 +43,6 @@ $publicacionesConFoto = obtenerFotos($publicaciones);
 $miSmarty->assign("publicaciones", $publicacionesConFoto);
 
     
-$miSmarty->display('header.tpl');
 $miSmarty->display('index.tpl');
-$miSmarty->display('footer.tpl');
 
 

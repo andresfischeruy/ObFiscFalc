@@ -1,3 +1,4 @@
+{include file="header.tpl"}
 <div id="mainBody">
     <div class="container">
         <div class="row">
@@ -75,3 +76,4 @@
         </div>
     </div>
 </div>
+{include file="footer.tpl"}
