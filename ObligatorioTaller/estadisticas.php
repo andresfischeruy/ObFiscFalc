@@ -17,8 +17,18 @@ function devolverCantidadDePubliXTipo($tipo) {
     return $contador['cant'];
 }
 
-function devolverCantidadXTipoEspecieEstado($cantReg, $tipo, $estado) {
-    for ($i = 1; $i < $cantReg; $i++) {
+function cantidadDeEspecies() {
+    $cn = getConexion();
+    $cn->consulta(
+            "select count(*) as cant from especies");
+    $contador = $cn->siguienteRegistro();
+    return $contador['cant'];
+}
+
+
+function devolverCantidadXTipoEspecieEstado($tipo, $estado) {
+   $contador = array();
+    for ($i = 1; $i <= cantidadDeEspecies(); $i++) {
         $cn = getConexion();
         $cn->consulta(
                 "select count(*) as cant from publicaciones where tipo=:tipo and especie_id=:esp and abierto=:estado", array(
@@ -26,7 +36,8 @@ function devolverCantidadXTipoEspecieEstado($cantReg, $tipo, $estado) {
             array('esp', $i, 'int'),
             array('estado', $estado, 'int')
         ));
-        $contador[$i] = $cn->siguienteRegistro();
+        $contador[$i]['cantidad'] = $cn->siguienteRegistro()['cant'];
+        $contador[$i]['nombreEspecie'] = devolverNombreEspecie($i)['nombre'];
     }
     return $contador;
 }
@@ -45,10 +56,10 @@ function devolverCantidadSegunEstadoYExito($exito) {
 //Variables para estadísticas
 $contadorE = devolverCantidadDePubliXTipo('E');
 $contadorP = devolverCantidadDePubliXTipo('P');
-$contadorXespEAb = devolverCantidadXTipoEspecieEstado($contadorE,'E', 1);
-$contadorXespPAb = devolverCantidadXTipoEspecieEstado($contadorP,'P', 1);
-$contadorXespECer = devolverCantidadXTipoEspecieEstado($contadorE,'E', 0);
-$contadorXespPCer = devolverCantidadXTipoEspecieEstado($contadorP,'P', 0);
+$contadorXespEAb = devolverCantidadXTipoEspecieEstado('E', 1);
+$contadorXespPAb = devolverCantidadXTipoEspecieEstado('P', 1);
+$contadorXespECer = devolverCantidadXTipoEspecieEstado('E', 0);
+$contadorXespPCer = devolverCantidadXTipoEspecieEstado('P', 0);
 $contadorExitosas = devolverCantidadSegunEstadoYExito(1);
 $contadorNoExitosas = devolverCantidadSegunEstadoYExito(0);
 

@@ -13,20 +13,20 @@
 
                 </br><h4>Publicaciones abiertas - Por especie</h4></br>
                 {foreach from=$arrayEncAbiertas item=item}
-                    Encontrados: {$item.cant}</br>
+                    {$item.nombreEspecie} encontrados: {$item.cantidad}</br>
                 {/foreach}
 
                 {foreach from=$arrayPerdAbiertas item=item}
-                    Perdidas: {$item.cant}</br>
+                   {$item.nombreEspecie} perdidos: {$item.cantidad}</br>
                 {/foreach}
                 </br>
                 </br><h4>Publicaciones cerradas - Por especie</h4></br>
                  {foreach from=$arrayEncCerradas item=item}
-                    Encontrados: {$item.cant}</br>
+                    {$item.nombreEspecie} encontrados: {$item.cantidad}</br>
                 {/foreach}
 
                 {foreach from=$arrayPerdCerradas item=item}
-                    Perdidas: {$item.cant}</br>
+                    {$item.nombreEspecie} perdidos: {$item.cantidad}</br>
                 {/foreach}
 
                 </br><h4>Éxito de publicaciones cerradas</h4></br>
