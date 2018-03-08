@@ -20,7 +20,7 @@ $foto = $_FILES['img'];
 
 $miSmarty = getSmarty();
 $miSmarty->assign("especies", obtenerEspecies());
-$miSmarty->assign("razas", obtenerRazasSinParam());
+//$miSmarty->assign("razas", obtenerRazasSinParam());
 $miSmarty->assign("barrios", obtenerBarrios());
 
 

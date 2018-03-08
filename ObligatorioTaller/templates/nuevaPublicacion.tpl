@@ -1,4 +1,5 @@
 {include file="header.tpl"}
+
 <div id="mainBody">
     <div class="container">
         <hr class="soften">
@@ -19,18 +20,16 @@
                             <input type="text" name ="titulo" placeholder="* Titulo de la publicacion" class="input-xlarge"/>
                         </div>
                         <div class="control-group">
-                            *Especie <select name="comboEspecies">
+                            *Especie <select name="comboEspecies" id="comboEspecies">
                                 {foreach from=$especies item=esp}
-                                    <option value="{$esp.nombre}"> {$esp.nombre} </option>
+                                    <option value="{$esp.nombre}" id="{$esp.id}"> {$esp.nombre} </option>
                                 {/foreach}	
                             </select>
 
                         </div>
                         <div class="control-group">
-                            *Raza <select name="comboRazas">
-                                {foreach from=$razas item=raz}
-                                    <option value="{$raz.nombre}"> {$raz.nombre} </option>
-                                {/foreach}	
+                            *Raza <select name="comboRazas" id = "comboRazas">
+
                             </select>
                         </div>
                         <div class="control-group">
@@ -71,4 +70,6 @@
 
     </div>
 </div>
-{include file="footer.tpl"}
+
+</body>
+</html>

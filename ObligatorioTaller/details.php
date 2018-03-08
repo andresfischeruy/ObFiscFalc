@@ -47,6 +47,7 @@ function obtenerPreguntas($idP) {
 
 guardarPregunta($idUsuario, $texto, $id);
 
+
 $pregunta = $_POST['comboPreguntas'];
 $idPregunta = (int) devolverIdPregunta($pregunta);
 $respuesta = $_POST['respuesta'];
