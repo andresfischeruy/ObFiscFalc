@@ -44,7 +44,12 @@
                         </p>
                     </div>
                 </div>
+                <div>
+                    <form  method="POST" action="publicacionPDF.php?id={$publicacion.id}" >
+                        <button type="submit" class="btn btn-success">Exportar a pdf</button>
+                    </form>
 
+                </div>
                 <h1>Preguntas</h1>
                 <hr class="soften"/>	
 
