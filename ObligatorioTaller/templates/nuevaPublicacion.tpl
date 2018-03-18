@@ -16,10 +16,11 @@
 
                     <fieldset>
                         <div class="control-group">
-                            <input type="text" name ="titulo" placeholder="* Titulo de la publicacion" class="input-xlarge"/>
+                            * <input type="text" name ="titulo" placeholder="Titulo de la publicacion" class="input-xlarge"/>
                         </div>
                         <div class="control-group">
-                            *Especie <select name="comboEspecies" id="comboEspecies">
+                             * <select name="comboEspecies" id="comboEspecies">
+                                   <option value="" id=""> Seleccione una especie </option>
                                 {foreach from=$especies item=esp}
                                     <option value="{$esp.nombre}" id="{$esp.id}"> {$esp.nombre} </option>
                                 {/foreach}	
@@ -27,19 +28,20 @@
 
                         </div>
                         <div class="control-group">
-                            *Raza <select name="comboRazas" id = "comboRazas">
+                            * <select name="comboRazas" id = "comboRazas">
 
                             </select>
                         </div>
                         <div class="control-group">
-                            *Barrio <select name="comboBarrios">
+                             * <select name="comboBarrios">
+                                <option value="" id=""> Seleccione un barrio </option>
                                 {foreach from=$barrios item=bar}
                                     <option value="{$bar.nombre}"> {$bar.nombre} </option>
                                 {/foreach}	
                             </select>
                         </div>
                         <div class="control-group">
-                            <textarea rows="3" id="textarea" name="descripcion" placeholder="* Descripción" class="input-xlarge"></textarea>
+                            * <textarea rows="3" id="textarea" name="descripcion" placeholder="Descripción" class="input-xlarge"></textarea>
                         </div>
 
                         <fieldset>

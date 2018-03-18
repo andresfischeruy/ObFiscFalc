@@ -299,6 +299,15 @@ function devolverNombreRaza($raza) {
     return $cn->siguienteRegistro();
 }
 
+function devolverNombreBarrio($barrio) {
+    $cn = getConexion();
+    $cn->consulta(
+            "select nombre from barrios where id=:barrio", array(
+        array("barrio", $barrio, 'int')
+    ));
+    return $cn->siguienteRegistro();
+}
+
 function devolverIdPregunta($textoPregunta) {
     $cn = getConexion();
     $cn->consulta(

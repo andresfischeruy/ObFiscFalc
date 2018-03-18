@@ -30,6 +30,7 @@ $publicacion = obtenerPublicacionPorID($id);
 $miSmarty->assign("publicacion", $publicacion);
 $miSmarty->assign("especie", devolverNombreEspecie($publicacion['especie_id']));
 $miSmarty->assign("raza", devolverNombreRaza($publicacion['raza_id']));
+$miSmarty->assign("barrio", devolverNombreBarrio($publicacion['barrio_id']));
 
 //Obtener Preguntas
 function obtenerPreguntas($idP) {

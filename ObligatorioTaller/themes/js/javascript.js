@@ -1,16 +1,6 @@
 $(document).ready(function () {
-
-    $('#myCarousel').carousel({
-        interval: 4000
-    });
-
-
     $("#comboEspecies").change(llenarComboRazas);
     $("#comboEspecies").ready(llenarComboRazas);
-
-
-
-
 });
 
 

@@ -42,7 +42,8 @@
                             <small> Perdido</small> <br>
                         {/if}
                         <small> Especie de mascota: {$especie.nombre}  </small><br>
-                        <small> Raza de mascota: {$raza.nombre}  </small>
+                        <small> Raza de mascota: {$raza.nombre}  </small><br>
+                        <small> Barrio: {$barrio.nombre}  </small>
                         <p>
                             {$publicacion.descripcion}
                         </p>
