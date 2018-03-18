@@ -4,10 +4,14 @@ $(document).ready(function () {
         interval: 4000
     });
 
-    
+
     $("#comboEspecies").change(llenarComboRazas);
     $("#comboEspecies").ready(llenarComboRazas);
-    cargarPublicaciones();
+    $("#comboEspeciesIndex").change(llenarComboRazasIndex);
+    $("#comboEspeciesIndex").ready(llenarComboRazasIndex);
+
+
+
 });
 
 
@@ -23,28 +27,15 @@ function llenarComboRazas() {
 
 }
 
-
-var paginaActual = 0;
-
-function cargarPublicaciones(tipo, especie, raza, barrio) {
+//en el js
+function llenarComboRazasIndex() {
+    var especie = document.getElementById("comboEspeciesIndex");
+    var especieSeleccionada = especie.options[especie.selectedIndex].id;
     $.ajax({
-        url: "paginaPublicaciones.php?pagina=" + paginaActual,
-        dataType: 'html',
-        type: "get",
-        data: {tipo: tipo, especie: especie, raza: raza, barrio: barrio}
+        url: "request.php?esp=" + especieSeleccionada,
+        dataType: 'html'
     }).done(function (html) {
-        $("#contenido").html(html);
-
-        $("#siguiente").click(function () {
-            paginaActual += 1;
-            cargarPublicaciones();
-        });
-
-        $("#anterior").click(function () {
-            paginaActual -= 1;
-            cargarPublicaciones();
-        });
-
+        $("#comboRazasIndex").html(html);
     });
-}
 
+}

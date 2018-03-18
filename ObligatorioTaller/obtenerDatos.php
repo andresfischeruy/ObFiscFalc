@@ -12,6 +12,61 @@ function getConexion() {
     return $cn;
 }
 
+
+function obtenerPublicacionesPaginadasConCombos($pagina, $tamano_pagina, $tipo, $especie, $raza, $barrio) {
+    $sql = "select * from publicaciones where abierto=1";
+    $concatenar = ' ';
+    $sqlCantidad = "select count(*) as total from publicaciones where abierto=1";
+    $param = array();
+    $paramCant = array();
+    
+    $cn = getConexion();
+    
+    //FILTROS
+    if (!empty($tipo)) {
+        $concatenar .= " and tipo=:tipo";
+        $param [] = array("tipo", $tipo, 'char');
+        $paramCant [] = array("tipo", $tipo, 'char');
+    }
+
+    if (!empty($barrio)) {
+        $concatenar .= " and barrio_id=:barrio";
+        $param [] = array("barrio", $barrio, 'int');
+        $paramCant [] = array("barrio", $barrio, 'int');
+    }
+
+    if (!empty($especie)) {
+        $concatenar .= " and especie_id=:especie";
+        $param [] = array("especie", $especie, 'int');
+        $paramCant [] = array("especie", $especie, 'int');
+
+        if (!empty($raza)) {
+            $concatenar .= " and raza_id=:raza";
+            $param [] = array("raza", $raza, 'int');
+            $paramCant [] = array("raza", $raza, 'int');
+        }
+    }
+    
+    $sql .= $concatenar;
+    $sql .= " limit :offset, :limit";
+
+    $sqlCantidad .= $concatenar;
+    
+    $param [] = array("limit", $tamano_pagina, 'int');
+    $param [] = array("offset", ($pagina * $tamano_pagina), 'int');
+            
+    $cn->consulta($sqlCantidad,$paramCant);
+    $total = $cn->siguienteRegistro()["total"];
+    
+    $cn->consulta($sql, $param);
+    $publicaciones =  $cn->restantesRegistros();
+    
+    return array(
+        "total" => $total,
+        "publicaciones" => $publicaciones,
+    );
+}
+
 ////////////////////////////////////////
 //Carga de elementos del SideBar
 function obtenerEspecies() {

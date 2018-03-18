@@ -21,6 +21,7 @@
         <script src="themes/js/sidebar.js" type="text/javascript"></script> 
         <script src="themes/js/bootstrap.min.js" type="text/javascript"></script> 
         <script src="themes/js/javascript.js" type="text/javascript"></script> 
+        <script src="themes/js/paginadoFiltros.js" type="text/javascript"></script> 
 
     </head>
 
