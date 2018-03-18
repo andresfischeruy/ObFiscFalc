@@ -1,7 +1,7 @@
 <?php
 
 require_once 'libs/Smarty.class.php';
-require_once 'class.Conexion.BD.php';
+require_once 'libs/class.Conexion.BD.php';
 
 //Conexión a la BDD
 function getConexion() {
@@ -12,7 +12,7 @@ function getConexion() {
     return $cn;
 }
 
-
+//Método principal para filtros en página Index
 function obtenerPublicacionesPaginadasConCombos($pagina, $tamano_pagina, $tipo, $especie, $raza, $barrio, $textoBuscador) {
     $sql = "select * from publicaciones where abierto=1";
     $concatenar = ' ';
@@ -28,25 +28,21 @@ function obtenerPublicacionesPaginadasConCombos($pagina, $tamano_pagina, $tipo, 
         $param [] = array("tipo", $tipo, 'char');
         $paramCant [] = array("tipo", $tipo, 'char');
     }
-
     if (!empty($barrio)) {
         $concatenar .= " and barrio_id=:barrio";
         $param [] = array("barrio", $barrio, 'int');
         $paramCant [] = array("barrio", $barrio, 'int');
     }
-
     if (!empty($especie)) {
         $concatenar .= " and especie_id=:especie";
         $param [] = array("especie", $especie, 'int');
         $paramCant [] = array("especie", $especie, 'int');
-
         if (!empty($raza)) {
             $concatenar .= " and raza_id=:raza";
             $param [] = array("raza", $raza, 'int');
             $paramCant [] = array("raza", $raza, 'int');
         }
     }
-    
     if (!empty($textoBuscador)) {
         $concatenar .= " and titulo like '%" . $textoBuscador . "%' or descripcion like '%" . $textoBuscador . "%' ";
     }
@@ -96,116 +92,14 @@ function obtenerBarrios() {
 }
 
 ////////////////////////////////////////
-//Carga de Publicaciones
-
-function obtenerTodasLasPublicaciones() {
-    $cn = getConexion();
-    $cn->consulta("select * from publicaciones");
-    return $cn->restantesRegistros();
-}
-
-function obtenerTodasLasPublicacionesAbiertas() {
-    $cn = getConexion();
-    $cn->consulta("select * from publicaciones where abierto=1");
-    return $cn->restantesRegistros();
-}
-
-function obtenerPublicaciones($tipo, $especie, $raza, $barrio) {
-    $sql = "select * from publicaciones where abierto=1";
-    $param = array();
-
-    $cn = getConexion();
-
-    if (!empty($tipo)) {
-        $sql .= " and tipo=:tipo";
-        $param [] = array("tipo", $tipo, 'char');
-    }
-
-
-    if (!empty($barrio)) {
-        $sql .= " and barrio_id=:barrio";
-        $param [] = array("barrio", $barrio, 'int');
-    }
-
-    if (!empty($especie)) {
-        $sql .= " and especie_id=:especie";
-        $param [] = array("especie", $especie, 'int');
-
-        if (!empty($raza)) {
-            $sql .= " and raza_id=:raza";
-            $param [] = array("raza", $raza, 'int');
-        }
-    }
-    
-    $cn->consulta($sql, $param);
-    return $cn->restantesRegistros();
-}
-
-function obtenerPublicacionesPaginadas($pagina, $tamano_pagina, $tipo, $especie, $raza, $barrio) {
-    
-    $sql = "select * from publicaciones where abierto=1";
-    $concatenar = '';
-    $sqlCantidad = "select count(*) as total from publicaciones where abierto=1";
-    $param = array();
-    $paramCant = array();
-    
-    $cn = getConexion();
-    
-    //FILTROS
-    if (!empty($tipo)) {
-        $concatenar .= " and tipo=:tipo";
-        $param [] = array("tipo", $tipo, 'char');
-        $paramCant [] = array("tipo", $tipo, 'char');
-    }
-
-    if (!empty($barrio)) {
-        $concatenar .= " and barrio_id=:barrio";
-        $param [] = array("barrio", $barrio, 'int');
-        $paramCant [] = array("barrio", $barrio, 'int');
-        
-    }
-
-    if (!empty($especie)) {
-        $concatenar .= " and especie_id=:especie";
-        $param [] = array("especie", $especie, 'int');
-        $paramCant [] = array("especie", $especie, 'int');
-
-        if (!empty($raza)) {
-            $concatenar .= " and raza_id=:raza";
-            $param [] = array("raza", $raza, 'int');
-            $paramCant [] = array("raza", $raza, 'int');
-        }
-    }
-    
-    $sql .= $concatenar;
-    $sql .= " limit :offset, :limit";
-
-    $sqlCantidad .= $concatenar;
-    
-    $param [] = array("limit", $tamano_pagina, 'int');
-    $param [] = array("offset", ($pagina * $tamano_pagina), 'int');
-            
-    $cn->consulta($sqlCantidad,$paramCant);
-    $total = $cn->siguienteRegistro()["total"];
-    
-    $cn->consulta($sql, $param);
-    $publicaciones =  $cn->restantesRegistros();
-    
-    return array(
-        "total" => $total,
-        "publicaciones" => $publicaciones,
-    );
-}
-
+//Carga de imágenes de publicaciones
 function obtenerFotos($publicaciones){
     while (list($k,$valor) = each($publicaciones)) {
         $publicaciones[$k]['fotos'] = levantarImagenes("./fotos/" , $valor["id"]);
     }    
-   
     reset ($publicaciones);
     return $publicaciones;
 }
-
 
 
 function obtenerPublicacionesAbiertasPorUsuario($usr) {
@@ -214,7 +108,6 @@ function obtenerPublicacionesAbiertasPorUsuario($usr) {
             "select titulo from publicaciones where usuario_id=:usr AND abierto=1", array(
         array("usr", $usr, 'int')
     ));
-
     return $cn->restantesRegistros();
 }
 
@@ -224,7 +117,6 @@ function obtenerPublicacionPorID($iden) {
             "select * from publicaciones where id=:iden", array(
         array("iden", $iden, 'int')
     ));
-
     return $cn->siguienteRegistro();
 }
 
@@ -345,7 +237,6 @@ function cerrarPublicacion($idPubli, $exito) {
 
 ///////////////////////////////////////
 //Devolver id
-
 function devolverIdEspecie($especie) {
     $cn = getConexion();
     $cn->consulta(
