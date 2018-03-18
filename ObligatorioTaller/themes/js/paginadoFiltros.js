@@ -13,7 +13,7 @@ $(document).ready(function () {
         $('#comboTiposIndex').prop('selectedIndex', 0);
         $('#comboEspeciesIndex').prop('selectedIndex', 0);
         $('#comboRazasIndex').html("");
-       // $('#comboRazasIndex').append("<option>Seleccione una raza</option>");
+        $('#comboRazasIndex').append("<option>Seleccione una raza</option>");
         $('#comboBarriosIndex').prop('selectedIndex', 0);
         cargarPublicaciones("", "", "", "","");
     });
