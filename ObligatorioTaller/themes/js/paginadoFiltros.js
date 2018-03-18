@@ -8,6 +8,11 @@ $(document).ready(function () {
         cargarPublicaciones(tipo, especie, raza, barrio);
     });
     $("#quitarFiltro").click(function () {
+        $('#comboTiposIndex').prop('selectedIndex', 0);
+        $('#comboEspeciesIndex').prop('selectedIndex', 0);
+        $('#comboRazasIndex').html("");
+        $('#comboRazasIndex').append("<option>Seleccione una raza</option>");
+        $('#comboBarriosIndex').prop('selectedIndex', 0);
         cargarPublicaciones("", "", "", "");
     });
     $("#comboEspeciesIndex").change(llenarComboRazasIndex);
@@ -41,7 +46,6 @@ function cargarPublicaciones(tipo, especie, raza, barrio) {
 
 function llenarComboRazasIndex() {
     var especie = $("#comboEspeciesIndex").val();
-    alert(especie);
     $.ajax({
         url: "request.php?esp=" + especie,
         dataType: 'html',
