@@ -40,7 +40,7 @@ function levantarImagenesParaPdf($directorio, $publi) {
 
 function imprimirFotos($fotos, $pdf) {
     for ($i = 0; $i < count($fotos); $i++) {
-        $pdf->Image($fotos[$i], 20, ($i + 3.2) * 50, 0, 30);
+        $pdf->Image($fotos[$i], 20, ($i + 3.5) * 50, 0, 30);
     }
 }
 
@@ -50,6 +50,7 @@ function configurarPDF($pdf, $publicacion) {
     $tipo = $datos["tipo"] == 'E' ? "Encontrado" : "Perdido";
     $especie = devolverNombreEspecie($datos["especie_id"]) ['nombre'];
     $raza = devolverNombreRaza($datos["raza_id"]) ['nombre'];
+    $barrio = devolverNombreBarrio($datos["barrio_id"]) ['nombre'];
     $descripcion = ($datos["descripcion"]);
     
     $pdf->Cell(40);
@@ -87,6 +88,15 @@ function configurarPDF($pdf, $publicacion) {
     $pdf->SetFont('Arial', '', 12);
     $pdf->SetTextColor(0, 0, 0);
     $pdf->Cell(60, 15, utf8_decode($raza), 1, 0, 'L', 0);
+    $pdf->Ln(15);
+    
+    $pdf->Cell(40);
+    $pdf->SetFont('Arial', 'B', 12);
+    $pdf->SetTextColor(252, 252, 252);
+    $pdf->Cell(50, 15, utf8_decode('Barrio'), 1, 0, 'L', 1);
+    $pdf->SetFont('Arial', '', 12);
+    $pdf->SetTextColor(0, 0, 0);
+    $pdf->Cell(60, 15, utf8_decode($barrio), 1, 0, 'L', 0);
     $pdf->Ln(20);
 
     $pdf->SetFont('Arial', 'I', 12);
