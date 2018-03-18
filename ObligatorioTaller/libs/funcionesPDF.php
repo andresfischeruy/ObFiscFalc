@@ -1,6 +1,6 @@
 <?php
 
-require_once 'obtenerDatos.php';
+require_once './obtenerDatos.php';
 require_once 'libs/Smarty.class.php';
 require_once('libs/fpdf/fpdf.php');
 
