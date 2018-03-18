@@ -28,13 +28,6 @@ function obtenerRazas($esp) {
     return $cn->restantesRegistros();
 }
 
-//TEMPORAL
-
-function obtenerRazasSinParam() {
-    $cn = getConexion();
-    $cn->consulta("select * from razas");
-    return $cn->restantesRegistros();
-}
 
 function obtenerBarrios() {
     $cn = getConexion();
