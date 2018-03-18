@@ -1,6 +1,31 @@
 <?php
 require_once 'obtenerDatos.php';
 
+$id=1;
+
+
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+}
+
+$usuario = usuarioLogueado();
+$idUsuario = devolverIdUsuario($usuario);
+$texto = $_POST['pregunta'];
+
+
+guardarPregunta($idUsuario, $texto, $id);
+
+
+$pregunta = $_POST['comboPreguntas'];
+$idPregunta = (int) devolverIdPregunta($pregunta);
+$respuesta = $_POST['respuesta'];
+
+responderPregunta($idPregunta, $respuesta);
+
+
+
+header('location:details.php?ID='.$id);
+
 
 function guardarPregunta($usuario, $pregunta, $idPublicacion) {
 
@@ -8,7 +33,7 @@ function guardarPregunta($usuario, $pregunta, $idPublicacion) {
     $sql .= " VALUES (:id, :publi, :pregunta, :resp, :usuario)";
 
     $cn = getConexion();
-    $cn->consulta($sql, array(
+    return $cn->consulta($sql, array(
         array("id", '', 'int'),
         array("publi", $idPublicacion, 'int'),
         array("pregunta", $pregunta, 'string'),
@@ -22,10 +47,9 @@ function responderPregunta($idPregunta, $texto) {
     $sql = "UPDATE preguntas SET respuesta=:resp";
     $sql .= " where id=:id";
     $cn = getConexion();
-    $cn->consulta($sql, array(
+    return $cn->consulta($sql, array(
         array("id", $idPregunta, 'int'),
         array("resp", $texto, 'string')));
 }
-
 
 

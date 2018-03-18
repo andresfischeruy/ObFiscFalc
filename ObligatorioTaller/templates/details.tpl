@@ -83,7 +83,7 @@
                             <h3>Nueva pregunta</h3>
                         </div>
                         <div>
-                            <form  method="POST" action="details.php?id={$publicacion.id}" >
+                            <form  method="post" action="q&a.php" >
                                 <div class="col-sm-10">
                                     <textarea name = 'pregunta' id = 'inputPregunta' class="form-control" rows="3" ></textarea>
                                 </div>
@@ -95,7 +95,7 @@
                             <h3>Responder pregunta</h3>
                         </div>
                         <div>
-                            <form  method="POST" action="details.php?id={$publicacion.id}" >
+                            <form method="post" action="q&a.php" >
                                 <div class="control-group">
                                     <select name="comboPreguntas">
                                         {foreach from=$preguntasSinRespuesta item=preg}
@@ -107,9 +107,9 @@
                                 <div class="col-sm-10">
                                     <textarea name = 'respuesta' id = 'inputRespuesta' class="form-control" rows="3" ></textarea>
                                 </div>
-                                <button type="submit" id='btnResponder' class="btn btn-primary">Responder</button>
+                                <button type="submit" id='btnResponder' class="btn btn-primary" >Responder</button>
                             </form>
-                        </div> 
+                        </div>
                     {/if}
                 {else}
                     <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span id='btnIniciarSesionPregu' class="btn btn-large btn-primary">Inicia sesión para realizar una pregunta</span></a>

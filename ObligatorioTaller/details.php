@@ -1,11 +1,10 @@
 <?php
 
 require_once 'obtenerDatos.php';
-require_once 'preguntar.php';
+
 require_once 'libs/Smarty.class.php';
 
 require('libs/fpdf/fpdf.php');
-
 
 $id=1;
 
@@ -19,21 +18,18 @@ $texto = $_POST['pregunta'];
 $arrayFotos = levantarImagenes("./fotos/",$id);
 $miSmarty = getSmarty();
 
+
+//Carga de preguntas
+$preguntas = obtenerPreguntas($id);
+
+
+
+
 //Carga de publicacion
 $publicacion = obtenerPublicacionPorID($id);
 $miSmarty->assign("publicacion", $publicacion);
 $miSmarty->assign("especie", devolverNombreEspecie($publicacion['especie_id']));
 $miSmarty->assign("raza", devolverNombreRaza($publicacion['raza_id']));
-
-//Carga de preguntas
-$preguntas = obtenerPreguntas($id);
-$miSmarty->assign("preguntas", $preguntas);
-$miSmarty->assign("preguntasSinRespuesta", obtenerPreguntasSinRespuesta($id));
-$miSmarty->assign("usuarioPublicador", $publicacion['usuario_id']);
-$miSmarty->assign('primerFoto', $arrayFotos[0] );
-$miSmarty->assign('fotos', devolverFotosSinLaPrimera($arrayFotos) );
-$miSmarty->display('details.tpl');
-
 
 //Obtener Preguntas
 function obtenerPreguntas($idP) {
@@ -46,11 +42,18 @@ function obtenerPreguntas($idP) {
     return $cn->restantesRegistros();
 }
 
-guardarPregunta($idUsuario, $texto, $id);
+//guardarPregunta($idUsuario, $texto, $id);
 
 
 $pregunta = $_POST['comboPreguntas'];
 $idPregunta = (int) devolverIdPregunta($pregunta);
 $respuesta = $_POST['respuesta'];
 
-responderPregunta($idPregunta, $respuesta);
+//responderPregunta($idPregunta, $respuesta);
+
+$miSmarty->assign("preguntas", $preguntas);
+$miSmarty->assign("preguntasSinRespuesta", obtenerPreguntasSinRespuesta($id));
+$miSmarty->assign("usuarioPublicador", $publicacion['usuario_id']);
+$miSmarty->assign('primerFoto', $arrayFotos[0] );
+$miSmarty->assign('fotos', devolverFotosSinLaPrimera($arrayFotos) );
+$miSmarty->display('details.tpl');
