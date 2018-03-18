@@ -6,7 +6,6 @@ $(document).ready(function () {
         var raza = $("#comboRazasIndex").val();
         var barrio = $("#comboBarriosIndex").val();
         var buscador = $("#busqueda").val();
-        alert(buscador);
         cargarPublicaciones(tipo, especie, raza, barrio,buscador);
     });
     $("#quitarFiltro").click(function () {
