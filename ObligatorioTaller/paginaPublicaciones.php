@@ -27,13 +27,14 @@ if (isset($_GET["pagina"])) {
     $pagina = $_GET["pagina"];
 }
 
+
+
 $info = obtenerPublicacionesPaginadas($pagina, $tamano, $tipoP, $especieP, $razaP, $barrioP);
-$infoConCombos = obtenerPublicacionesPaginadasConCombos($pagina, $tamano, $tipoP, $especieP, $razaP, $barrioP);
-$publicacionesConFoto = obtenerFotos($infoConCombos["publicaciones"]);
+$publicacionesConFoto = obtenerFotos($info["publicaciones"]);
 $smarty = getSmarty();
 
 $smarty->assign("mostrarAnterior", $pagina > 0);
-$smarty->assign("mostrarSiguiente", $pagina < ($infoConCombos["total"] / $tamano)-1);
+$smarty->assign("mostrarSiguiente", $pagina < ($info["total"] / $tamano)-1);
 $smarty->assign("publicaciones", $publicacionesConFoto);
 $smarty->display("paginaPublicaciones.tpl");
 
