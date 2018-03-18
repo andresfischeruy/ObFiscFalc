@@ -87,6 +87,7 @@ function obtenerPublicacionesPaginadas($pagina, $tamano_pagina, $tipo, $especie,
     $concatenar = '';
     $sqlCantidad = "select count(*) as total from publicaciones where abierto=1";
     $param = array();
+    $paramCant = array();
     
     $cn = getConexion();
     
@@ -94,20 +95,25 @@ function obtenerPublicacionesPaginadas($pagina, $tamano_pagina, $tipo, $especie,
     if (!empty($tipo)) {
         $concatenar .= " and tipo=:tipo";
         $param [] = array("tipo", $tipo, 'char');
+        $paramCant [] = array("tipo", $tipo, 'char');
     }
 
     if (!empty($barrio)) {
         $concatenar .= " and barrio_id=:barrio";
         $param [] = array("barrio", $barrio, 'int');
+        $paramCant [] = array("barrio", $barrio, 'int');
+        
     }
 
     if (!empty($especie)) {
         $concatenar .= " and especie_id=:especie";
         $param [] = array("especie", $especie, 'int');
+        $paramCant [] = array("especie", $especie, 'int');
 
         if (!empty($raza)) {
             $concatenar .= " and raza_id=:raza";
             $param [] = array("raza", $raza, 'int');
+            $paramCant [] = array("raza", $raza, 'int');
         }
     }
     
@@ -119,7 +125,7 @@ function obtenerPublicacionesPaginadas($pagina, $tamano_pagina, $tipo, $especie,
     $param [] = array("limit", $tamano_pagina, 'int');
     $param [] = array("offset", ($pagina * $tamano_pagina), 'int');
             
-    $cn->consulta($sqlCantidad);
+    $cn->consulta($sqlCantidad,$paramCant);
     $total = $cn->siguienteRegistro()["total"];
     
     $cn->consulta($sql, $param);

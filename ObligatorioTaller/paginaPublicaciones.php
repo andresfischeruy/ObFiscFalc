@@ -28,10 +28,10 @@ if (isset($_GET["pagina"])) {
 }
 
 $info = obtenerPublicacionesPaginadas($pagina, $tamano, $tipoP, $especieP, $razaP, $barrioP);
-
+$publicacionesConFoto = obtenerFotos($info["publicaciones"]);
 $smarty = getSmarty();
 
 $smarty->assign("mostrarAnterior", $pagina > 0);
 $smarty->assign("mostrarSiguiente", $pagina < ($info["total"] / $tamano)-1);
-$smarty->assign("publicaciones", $info["publicaciones"]);
+$smarty->assign("publicaciones", $publicacionesConFoto);
 $smarty->display("paginaPublicaciones.tpl");

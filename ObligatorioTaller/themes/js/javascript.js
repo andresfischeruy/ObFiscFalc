@@ -1,13 +1,8 @@
 $(document).ready(function () {
-     
+
     $('#myCarousel').carousel({
         interval: 4000
     })
-    $('#featured').carousel({
-        interval: 4000
-    })
-
-
 
     $('.subMenu > a').click(function (e)
     {
@@ -52,7 +47,6 @@ $(document).ready(function () {
             ul.slideDown(250);
         }
     });
-
     $("#comboEspecies").change(llenarComboRazas);
     $("#comboEspecies").ready(llenarComboRazas);
     cargarPublicaciones();
@@ -79,7 +73,7 @@ function cargarPublicaciones(tipo, especie, raza, barrio) {
         url: "paginaPublicaciones.php?pagina=" + paginaActual,
         dataType: 'html',
         type: "get",
-        data:  {tipo: tipo, especie: especie, raza: raza, barrio: barrio}
+        data: {tipo: tipo, especie: especie, raza: raza, barrio: barrio}
     }).done(function (html) {
         $("#contenido").html(html);
 

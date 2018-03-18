@@ -16,7 +16,7 @@
                     <li class="subMenu"><a> ESPECIE</a>
                         <ul style="display:none">
                             {foreach from=$especies item=espp}
-                                {if $espp.id == especie }
+                                {if $espp.id == {$especie} }
                                     <li><a class="active" href="index.php?tipo={$tipo}&especie={$espp.id}&raza={$raza}&barrio={$barrio}"><i class="icon-chevron-right"></i>{$espp.nombre}</a></li>
                                         {else}
                                     <li><a href="index.php?tipo={$tipo}&especie={$espp.id}&raza={$raza}&barrio={$barrio}"><i class="icon-chevron-right"></i>{$espp.nombre}</a></li> 
