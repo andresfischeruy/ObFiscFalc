@@ -1,6 +1,5 @@
 #mainBody {/* background: url(../images/seperator.png) repeat-x 0 0; */ border-top:2px solid #dedede; padding-top: 18px;}
-#carouselBlk,#header{background: url(../images/headerRepeat.png) repeat-x 0 0 #f7f7f7;}
-#carouselBlk{width: 28%; float: left; margin-left: 40px; }
+#carouselBlk {height: 28% ;  float: end; margin-right: 40px; margin-left: 40px; }
 #srchFld {background: url(../images/search.png) no-repeat 4px center #fff;}
 .tag {background:url(../images/new.png) no-repeat 0 0; position: absolute; display:block; top: -4px;right: -18px; height:48px; width:48px;}
 .clr{clear:both;}
@@ -80,7 +79,7 @@
     .navbar .nav > li > a {border-top:1px solid #666; padding:0}
 }
 
-#btnPublicar {
+#btnPublicar, #btnExportar {
     margin-top: 20px;
     position: relative;
 }
@@ -88,4 +87,18 @@
 #inputPregunta, #inputRespuesta{
     width: 650px;
     height:  60px;
+}
+
+#fotoUno, #foto{
+    max-width: 200px;
+    max-height: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block; 
+}
+
+#contenedorFotoUno, #contenedorFotos{
+    width: 280px;
+    height: 150px;
+    align-content: center;
 }
