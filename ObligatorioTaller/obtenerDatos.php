@@ -13,7 +13,7 @@ function getConexion() {
 }
 
 
-function obtenerPublicacionesPaginadasConCombos($pagina, $tamano_pagina, $tipo, $especie, $raza, $barrio) {
+function obtenerPublicacionesPaginadasConCombos($pagina, $tamano_pagina, $tipo, $especie, $raza, $barrio, $textoBuscador) {
     $sql = "select * from publicaciones where abierto=1";
     $concatenar = ' ';
     $sqlCantidad = "select count(*) as total from publicaciones where abierto=1";
@@ -46,6 +46,11 @@ function obtenerPublicacionesPaginadasConCombos($pagina, $tamano_pagina, $tipo, 
             $paramCant [] = array("raza", $raza, 'int');
         }
     }
+    
+    if (!empty($textoBuscador)) {
+        $concatenar .= " and titulo like '%" . $textoBuscador . "%' or descripcion like '%" . $textoBuscador . "%' ";
+    }
+
     
     $sql .= $concatenar;
     $sql .= " limit :offset, :limit";

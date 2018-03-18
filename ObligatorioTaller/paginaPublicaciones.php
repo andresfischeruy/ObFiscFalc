@@ -27,9 +27,13 @@ if (isset($_GET["pagina"])) {
     $pagina = $_GET["pagina"];
 }
 
+if (isset($_GET["buscador"])) {
+    $buscador = $_GET["buscador"];
+}
 
 
-$info = obtenerPublicacionesPaginadas($pagina, $tamano, $tipoP, $especieP, $razaP, $barrioP);
+
+$info = obtenerPublicacionesPaginadasConCombos($pagina, $tamano, $tipoP, $especieP, $razaP, $barrioP,$buscador);
 $publicacionesConFoto = obtenerFotos($info["publicaciones"]);
 $smarty = getSmarty();
 
