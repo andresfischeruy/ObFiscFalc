@@ -5,7 +5,7 @@
 require_once 'obtenerDatos.php';
 
 $pagina = 0;
-$tamano = 5;
+$tamano = 10;
 
 if (isset($_GET['tipo'])) {
     $tipoP = $_GET['tipo'];

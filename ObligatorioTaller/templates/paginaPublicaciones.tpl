@@ -5,7 +5,7 @@
         {foreach from=$publicaciones item=pu}
             <li class="span3">
                 <div class="thumbnail">
-                    <a  href="details.php?id={$pu.id}"> <img src="{$pu.fotos[0]}"  alt="Foto de Publicacion"/></a>
+                    <a  href="details.php?id={$pu.id}"> <img id = 'fotoPubli' src="{$pu.fotos[0]}"  alt="Foto de Publicacion"/></a>
                     <div class="caption">
                         <h5><a  href="details.php?id={$pu.id}">{$pu.titulo}</a></h5>
                             {if {$pu.tipo} == 'E'}
@@ -20,12 +20,14 @@
             </li>
         {/foreach}
     </ul>
-    {if $mostrarAnterior}
-        <button id="anterior">Anterior</button>
-    {/if}
+    <div id='divBotones'>
+        {if $mostrarAnterior}
+            <button id="anterior" class="btn btn-primary">Anterior</button>
+        {/if}
 
-    {if $mostrarSiguiente}
-        <button id="siguiente">Siguiente</button>
-    {/if}
+        {if $mostrarSiguiente}
+            <button id="siguiente" class="btn btn-primary">Siguiente</button
+        {/if}
+    </div>
 
 </div>

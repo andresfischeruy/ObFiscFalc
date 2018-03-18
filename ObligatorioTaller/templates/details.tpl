@@ -50,7 +50,7 @@
                 </div>
                 <div>
                     <form  method="POST" action="publicacionPDF.php?id={$publicacion.id}" >
-                        <button type="submit" class="btn btn-success">Exportar a pdf</button>
+                        <button type="submit" class="btn btn-primary">Exportar a pdf</button>
                     </form>
 
                 </div>
@@ -87,7 +87,7 @@
                                 <div class="col-sm-10">
                                     <textarea name = 'pregunta' id = 'inputPregunta' class="form-control" rows="3" ></textarea>
                                 </div>
-                                <button type="submit" class="btn btn-success">Preguntar</button>
+                                <button type="submit" id='btnPreguntar' class="btn btn-primary">Preguntar</button>
                             </form>
                         </div>
                     {else}
@@ -107,12 +107,12 @@
                                 <div class="col-sm-10">
                                     <textarea name = 'respuesta' id = 'inputRespuesta' class="form-control" rows="3" ></textarea>
                                 </div>
-                                <button type="submit" class="btn btn-success">Responder</button>
+                                <button type="submit" id='btnResponder' class="btn btn-primary">Responder</button>
                             </form>
                         </div> 
                     {/if}
                 {else}
-                    <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success">Inicia sesión para realizar una pregunta</span></a>
+                    <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-primary">Inicia sesión para realizar una pregunta</span></a>
                     <div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="false" >
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -127,7 +127,7 @@
                                     <input type="password" id="inputPassword" placeholder="Password" name="clave">
                                 </div>
 
-                                <input type="submit" class="btn btn-success" value="Iniciar sesión" >
+                                <input type="submit" class="btn btn-primary" value="Iniciar sesión" >
                                 <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
                             </form>		
                         </div>

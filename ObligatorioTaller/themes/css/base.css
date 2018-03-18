@@ -102,3 +102,20 @@
     height: 150px;
     align-content: center;
 }
+
+#fotoPubli{
+    height: 200px;
+    width: auto;
+}
+
+.thumbnail{
+    height:400px;
+}
+
+#divBotones {
+    padding-bottom:50px;
+}
+
+#btnPreguntar,#btnResponder{
+    margin-bottom: 10px;
+}

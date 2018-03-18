@@ -1,5 +1,4 @@
 {include file="header.tpl"}
-
 <div id="mainBody">
     <div class="container">
         <hr class="soften">

@@ -16,9 +16,11 @@
 
         <style type="text/css" id="enject"></style>
 
-        <script src="themes/js/javascript.js" type="text/javascript"></script> 
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="themes/js/sidebar.js" type="text/javascript"></script> 
         <script src="themes/js/bootstrap.min.js" type="text/javascript"></script> 
-        <script src="themes/js/jquery.js"></script> 
+        <script src="themes/js/javascript.js" type="text/javascript"></script> 
 
     </head>
 
@@ -53,12 +55,12 @@
                             <li class="">
                                 {if (!isset($usuario))}
                                 <li class=""><a href="register.php">Registrarse</a></li>
-                                <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success">Login</span></a>
+                                <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-primary">Login</span></a>
                             {else}
                                 <li class=""><a href="newPost.php">Nueva Publicación</a></li>
                                 <li class=""><a href="cerrarPublicacion.php">Cerrar Publicación</a></li>
                                 <li class=""><a href="estadisticas.php">Estadisticas</a></li>
-                                <a href="doLogout.php" role="button" style="padding-right:0"><span class="btn btn-large btn-success">Salir</span></a>
+                                <a href="doLogout.php" role="button" style="padding-right:0"><span class="btn btn-large btn-primary">Salir</span></a>
                             {/if}
 
                             <div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="false" >
@@ -76,7 +78,7 @@
                                         <div class="control-group">
                                             <input type="password" id="inputPassword" placeholder="Password" name="clave">
                                         </div>
-                                        <input type="submit" class="btn btn-success" value="Iniciar sesión" >
+                                        <input type="submit" class="btn btn-primary btn-lg" value="Iniciar sesión" >
                                         <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
                                     </form>		
 
