@@ -1,0 +1,37 @@
+
+
+<?php
+
+require_once 'obtenerDatos.php';
+
+$pagina = 0;
+$tamano = 5;
+
+if (isset($_GET['tipo'])) {
+    $tipoP = $_GET['tipo'];
+}
+
+if (isset($_GET['especie'])) {
+    $especieP = $_GET['especie'];
+}
+
+if (isset($_GET['raza'])) {
+    $razaP = $_GET['raza'];
+}
+
+if (isset($_GET['barrio'])) {
+    $barrioP = $_GET['barrio'];
+}
+
+if (isset($_GET["pagina"])) {
+    $pagina = $_GET["pagina"];
+}
+
+$info = obtenerPublicacionesPaginadas($pagina, $tamano, $tipoP, $especieP, $razaP, $barrioP);
+
+$smarty = getSmarty();
+
+$smarty->assign("mostrarAnterior", $pagina > 0);
+$smarty->assign("mostrarSiguiente", $pagina < ($info["total"] / $tamano)-1);
+$smarty->assign("publicaciones", $info["publicaciones"]);
+$smarty->display("paginaPublicaciones.tpl");

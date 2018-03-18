@@ -1,4 +1,5 @@
 $(document).ready(function () {
+     
     $('#myCarousel').carousel({
         interval: 4000
     })
@@ -54,6 +55,7 @@ $(document).ready(function () {
 
     $("#comboEspecies").change(llenarComboRazas);
     $("#comboEspecies").ready(llenarComboRazas);
+    cargarPublicaciones();
 });
 
 
@@ -68,3 +70,29 @@ function llenarComboRazas() {
     });
 
 }
+
+
+var paginaActual = 0;
+
+function cargarPublicaciones(tipo, especie, raza, barrio) {
+    $.ajax({
+        url: "paginaPublicaciones.php?pagina=" + paginaActual,
+        dataType: 'html',
+        type: "get",
+        data:  {tipo: tipo, especie: especie, raza: raza, barrio: barrio}
+    }).done(function (html) {
+        $("#contenido").html(html);
+
+        $("#siguiente").click(function () {
+            paginaActual += 1;
+            cargarPublicaciones();
+        });
+
+        $("#anterior").click(function () {
+            paginaActual -= 1;
+            cargarPublicaciones();
+        });
+
+    });
+}
+

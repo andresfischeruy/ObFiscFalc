@@ -88,6 +88,55 @@ function obtenerPublicaciones($tipo, $especie, $raza, $barrio) {
     return $cn->restantesRegistros();
 }
 
+function obtenerPublicacionesPaginadas($pagina, $tamano_pagina, $tipo, $especie, $raza, $barrio) {
+    
+    $sql = "select * from publicaciones where abierto=1";
+    $concatenar = '';
+    $sqlCantidad = "select count(*) as total from publicaciones where abierto=1";
+    $param = array();
+    
+    $cn = getConexion();
+    
+    //FILTROS
+    if (!empty($tipo)) {
+        $concatenar .= " and tipo=:tipo";
+        $param [] = array("tipo", $tipo, 'char');
+    }
+
+    if (!empty($barrio)) {
+        $concatenar .= " and barrio_id=:barrio";
+        $param [] = array("barrio", $barrio, 'int');
+    }
+
+    if (!empty($especie)) {
+        $concatenar .= " and especie_id=:especie";
+        $param [] = array("especie", $especie, 'int');
+
+        if (!empty($raza)) {
+            $concatenar .= " and raza_id=:raza";
+            $param [] = array("raza", $raza, 'int');
+        }
+    }
+    
+    $sql .= $concatenar;
+    $sql .= " limit :offset, :limit";
+
+    $sqlCantidad .= $concatenar;
+    
+    $param [] = array("limit", $tamano_pagina, 'int');
+    $param [] = array("offset", ($pagina * $tamano_pagina), 'int');
+            
+    $cn->consulta($sqlCantidad);
+    $total = $cn->siguienteRegistro()["total"];
+    
+    $cn->consulta($sql, $param);
+    $publicaciones =  $cn->restantesRegistros();
+    
+    return array(
+        "total" => $total,
+        "publicaciones" => $publicaciones,
+    );
+}
 
 function obtenerFotos($publicaciones){
     while (list($k,$valor) = each($publicaciones)) {

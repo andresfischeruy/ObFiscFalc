@@ -23,8 +23,6 @@ if (isset($_GET['barrio'])) {
 
 $miSmarty = getSmarty();
 
-
-
 $miSmarty->assign("tipo", $tipo);
 $miSmarty->assign("raza", $raza);
 $miSmarty->assign("especie", $especie);
@@ -36,13 +34,6 @@ $miSmarty->assign("especies", obtenerEspecies());
 $miSmarty->assign("razas", obtenerRazas($especie));
 $miSmarty->assign("barrios", obtenerBarrios());
 
-
-//Carga de Publicaciones
-$publicaciones = obtenerPublicaciones($tipo, $especie, $raza, $barrio);
-$publicacionesConFoto = obtenerFotos($publicaciones);
-$miSmarty->assign("publicaciones", $publicacionesConFoto);
-
-    
 $miSmarty->display('index.tpl');
 
 
