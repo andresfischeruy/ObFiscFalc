@@ -31,7 +31,6 @@ $miSmarty->assign("barrio", $barrio);
 
 //Carga de SideBar
 $miSmarty->assign("especies", obtenerEspecies());
-$miSmarty->assign("razas", obtenerRazas($especie));
 $miSmarty->assign("barrios", obtenerBarrios());
 
 $miSmarty->display('index.tpl');
