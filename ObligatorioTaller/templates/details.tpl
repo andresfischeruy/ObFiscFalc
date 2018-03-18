@@ -112,19 +112,19 @@
                         </div> 
                     {/if}
                 {else}
-                    <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-primary">Inicia sesión para realizar una pregunta</span></a>
+                    <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span id='btnIniciarSesionPregu' class="btn btn-large btn-primary">Inicia sesión para realizar una pregunta</span></a>
                     <div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="false" >
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <button type="button" class="close"  data-dismiss="modal" aria-hidden="true">×</button>
                             <h3>Iniciar sesion</h3>
                         </div>
                         <div class="modal-body">
                             <form  method="POST" action="doLogin.php" >
                                 <div class="control-group">								
-                                    <input type="text" id="inputEmail" placeholder="Email" name="usuario">
+                                    <input type="text" id="inputEmailPreg" placeholder="Email" name="usuario">
                                 </div>
                                 <div class="control-group">
-                                    <input type="password" id="inputPassword" placeholder="Password" name="clave">
+                                    <input type="password" id="inputPasswordPreg" placeholder="Password" name="clave">
                                 </div>
 
                                 <input type="submit" class="btn btn-primary" value="Iniciar sesión" >

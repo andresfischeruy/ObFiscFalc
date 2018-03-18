@@ -116,6 +116,6 @@
     padding-bottom:50px;
 }
 
-#btnPreguntar,#btnResponder{
-    margin-bottom: 10px;
+#btnPreguntar,#btnResponder, #btnIniciarSesionPregu{
+    margin-bottom: 20px;
 }
