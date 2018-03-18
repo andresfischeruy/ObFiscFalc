@@ -11,20 +11,24 @@
                         <div id="myCarousel" class="carousel slide">
                             <div class="carousel-inner">
                                 <div class="item active">
-                                    <div class="container">
-                                        <img src="{$primerFoto}" />
+                                    <div class="container" id='contenedorFotoUno'>
+                                        <img id='fotoUno' src="{$primerFoto}" />
                                     </div>
                                 </div>
                                 {foreach from=$fotos item=src}
                                     <div class="item">
-                                        <div class="container">
-                                            <img src="{$src}" />
+                                        <div class="container" id='contenedorFotos'>
+                                            <img id='foto' src="{$src}" />
                                         </div>
                                     </div>
                                 {/foreach}  
 
-                                <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-                                <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+                                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                                    &lsaquo;
+                                </a>
+                                <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                                    &rsaquo;
+                                </a>
                             </div> 
                         </div> 
                     </div>
