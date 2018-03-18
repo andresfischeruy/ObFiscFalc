@@ -45,11 +45,7 @@
                     </a>
                     <div class="navbar-inner">
                         <a class="brand" href="index.php"><img src="themes/images/logo.png" alt="Avisos Mascoteros"/></a>
-                        <form class="form-inline navbar-search" method="post" action="products.html" >
-                            <input id="srchFld" class="srchTxt" type="text" />
-
-                            <button type="submit" id="submitButton" class="btn btn-primary">Ir</button>
-                        </form>
+                        
                         <ul id="topMenu" class="nav pull-right">
 
 
