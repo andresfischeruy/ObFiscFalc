@@ -61,11 +61,11 @@
                     <div class="accordion" id="accordion2">
                         <div class="accordion-group">
                             <div class="accordion-heading">
-                                <h4><a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                                <h4><a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapse{$preg.id}">
                                         {$preg.texto}
                                     </a></h4>
                             </div>
-                            <div id="collapseOne" class="accordion-body collapse"  >
+                            <div id="collapse{$preg.id}" class="accordion-body collapse"  >
                                 <div class="accordion-inner">
                                     {$preg.respuesta}
                                 </div>
@@ -73,7 +73,10 @@
 
                         </div>
                     </div>
+
                 {/foreach}
+
+                
                 {if (isset($usuario))}
                     {if {$usuario.id} <> {$usuarioPublicador}}
                         <div>    
