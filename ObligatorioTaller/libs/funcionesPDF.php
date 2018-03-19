@@ -38,6 +38,9 @@ function levantarImagenesParaPdf($directorio, $publi) {
     return $fotos;
 }
 
+
+
+
 function imprimirFotos($fotos, $pdf) {
     for ($i = 0; $i < count($fotos); $i++) {
         $pdf->Image($fotos[$i], 20, ($i + 3.5) * 50, 0, 30);

@@ -36,7 +36,7 @@
                         <div class="controls">
                             <input type="hidden" name="email_create" value="1">
                             <input type="hidden" name="is_new_customer" value="1">
-                            <input class="btn btn-large btn-success" type="submit" value="Registrarse" />
+                            <input class="btn btn-large btn-primary" type="submit" value="Registrarse" />
                         </div>
                     </div>		
                 </form>
@@ -45,3 +45,5 @@
         </div>
     </div>
 </div>
+</body>
+</html>

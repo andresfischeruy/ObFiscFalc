@@ -2,7 +2,7 @@
 
 require_once 'obtenerDatos.php';
 require_once 'libs/Smarty.class.php';
-require_once 'class.Conexion.BD.php';
+require_once 'libs/class.Conexion.BD.php';
 
 
 $nombre = $_POST["nombre"];
