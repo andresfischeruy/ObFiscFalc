@@ -44,7 +44,7 @@
 #logoArea, #logoArea a{outline:none;}
 .alignR .checkbox input[type="checkbox"] {float: right;margin: 4px 0 8px 11px;}
 
-.navbar .nav.pull-right, #sideManu {overflow:hidden;}
+.navbar .nav.pull-right, #sideManu {overflow:hidden; padding-top: 20px;}
 #logoArea  #smallScreen {margin: 21px 14px 0 0;}
 .navbar-search {margin-top: 8px;}
 /* Responsive--------------------- */
@@ -118,4 +118,12 @@
 
 #btnPreguntar,#btnResponder, #btnIniciarSesionPregu{
     margin-bottom: 20px;
+}
+
+#logo{
+    width: 250px;
+    height: auto;
+    float:left;
+    padding-bottom: 10px;
+    padding-top: 5px;
 }

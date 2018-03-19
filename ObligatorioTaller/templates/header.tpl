@@ -43,7 +43,7 @@
                         <span class="icon-bar"></span>
                     </a>
                     <div class="navbar-inner">
-                        <a class="brand" href="index.php"><img src="themes/images/logo.png" alt="Avisos Mascoteros"/></a>
+                        <a class="brand" href="index.php"><img id="logo" src="themes/images/logo.png" alt="Avisos Mascoteros"/></a>
                         
                         <ul id="topMenu" class="nav pull-right">
 
