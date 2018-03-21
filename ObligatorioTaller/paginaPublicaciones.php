@@ -1,7 +1,6 @@
-
-
 <?php
 
+require_once 'configuracion.php';
 require_once 'obtenerDatos.php';
 
 $pagina = 0;

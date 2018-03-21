@@ -1,5 +1,6 @@
 <?php
 
+require_once 'configuracion.php';
 require_once 'obtenerDatos.php';
 require_once 'libs/Smarty.class.php';
 

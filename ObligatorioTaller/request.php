@@ -1,6 +1,6 @@
 <?php
 
-
+require_once 'configuracion.php';
 require_once 'obtenerDatos.php';
 $especie = $_GET['esp'];
 $smarty = getSmarty();

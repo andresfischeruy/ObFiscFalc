@@ -1,4 +1,5 @@
 <?php
+
 require_once 'obtenerDatos.php';
 
 $id=1;

@@ -1,16 +1,8 @@
 <?php
 
-require_once 'libs/Smarty.class.php';
+require_once 'configuracion.php';
 require_once 'libs/class.Conexion.BD.php';
 
-//Conexión a la BDD
-function getConexion() {
-    $cn = new ConexionBD(
-            "mysql", "localhost", "mascotas", "root", "root");
-
-    $cn->conectar();
-    return $cn;
-}
 
 //Método principal para filtros en página Index
 function obtenerPublicacionesPaginadasConCombos($pagina, $tamano_pagina, $tipo, $especie, $raza, $barrio, $textoBuscador) {
@@ -69,7 +61,7 @@ function obtenerPublicacionesPaginadasConCombos($pagina, $tamano_pagina, $tipo, 
 }
 
 ////////////////////////////////////////
-//Carga de elementos del SideBar
+//Carga de elementos de combos
 function obtenerEspecies() {
     $cn = getConexion();
     $cn->consulta("select * from especies");
@@ -83,7 +75,6 @@ function obtenerRazas($esp) {
     ));
     return $cn->restantesRegistros();
 }
-
 
 function obtenerBarrios() {
     $cn = getConexion();
@@ -332,15 +323,4 @@ function existeEmail($email) {
     ));
     $usuarioEmail = $cn->siguienteRegistro();
     return $usuarioEmail != null;
-}
-
-//Configuración de Smarty
-function getSmarty() {
-    $miSmarty = new Smarty();
-    $miSmarty->template_dir = "templates";
-    $miSmarty->compile_dir = "templates_c";
-    $miSmarty->cache_dir = "cache";
-    $miSmarty->config_dir = "config";
-    $miSmarty->assign("usuario", usuarioLogueado());
-    return $miSmarty;
 }
