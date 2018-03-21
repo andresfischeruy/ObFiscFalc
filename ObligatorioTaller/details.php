@@ -6,9 +6,19 @@ require_once 'libs/Smarty.class.php';
 require('libs/fpdf/fpdf.php');
 
 $id=1;
+$err = 0;
+$tipo="";
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
+}
+
+if (isset($_GET['err'])) {
+    $err = $_GET['err'];
+}
+
+if (isset($_GET['tipo'])) {
+    $tipo = $_GET['tipo'];
 }
 
 $usuario = usuarioLogueado();
@@ -42,14 +52,18 @@ function obtenerPreguntas($idP) {
     return $cn->restantesRegistros();
 }
 
-//guardarPregunta($idUsuario, $texto, $id);
-
-
 $pregunta = $_POST['comboPreguntas'];
 $idPregunta = (int) devolverIdPregunta($pregunta);
 $respuesta = $_POST['respuesta'];
 
-//responderPregunta($idPregunta, $respuesta);
+if($err==1 && $tipo=='preg'){
+    $miSmarty->assign("tipoAlerta", "alert alert-danger");
+    $miSmarty->assign("mensajeAlerta", "Pregunta vacia.");
+}
+if($err==1 && $tipo=='resp'){
+    $miSmarty->assign("tipoAlerta", "alert alert-danger");
+    $miSmarty->assign("mensajeAlerta", "Respuesta vacia.");
+}
 
 $miSmarty->assign("preguntas", $preguntas);
 $miSmarty->assign("preguntasSinRespuesta", obtenerPreguntasSinRespuesta($id));

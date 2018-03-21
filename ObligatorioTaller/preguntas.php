@@ -14,18 +14,12 @@ $idUsuario = devolverIdUsuario($usuario);
 $texto = $_POST['pregunta'];
 
 
-guardarPregunta($idUsuario, $texto, $id);
-
-
-$pregunta = $_POST['comboPreguntas'];
-$idPregunta = (int) devolverIdPregunta($pregunta);
-$respuesta = $_POST['respuesta'];
-
-responderPregunta($idPregunta, $respuesta);
-
-
-
-header('location:details.php?ID='.$id);
+if(strlen($texto)!= 0){
+    guardarPregunta($idUsuario, $texto, $id);
+    header('location:details.php?id='.$id.'&err=0&tipo=preg');
+}else{
+    header('location:details.php?id='.$id.'&err=1&tipo=preg');
+}
 
 
 function guardarPregunta($usuario, $pregunta, $idPublicacion) {
@@ -44,13 +38,5 @@ function guardarPregunta($usuario, $pregunta, $idPublicacion) {
     );
 }
 
-function responderPregunta($idPregunta, $texto) {
-    $sql = "UPDATE preguntas SET respuesta=:resp";
-    $sql .= " where id=:id";
-    $cn = getConexion();
-    return $cn->consulta($sql, array(
-        array("id", $idPregunta, 'int'),
-        array("resp", $texto, 'string')));
-}
 
 

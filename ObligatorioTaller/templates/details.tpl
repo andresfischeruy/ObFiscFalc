@@ -77,26 +77,30 @@
 
                 {/foreach}
 
-                
+
                 {if (isset($usuario))}
                     {if {$usuario.id} <> {$usuarioPublicador}}
                         <div>    
                             <h3>Nueva pregunta</h3>
                         </div>
                         <div>
-                            <form  method="post" action="q&a.php" >
+                            <form  method="post" action="preguntas.php?id={$publicacion.id}" >
                                 <div class="col-sm-10">
                                     <textarea name = 'pregunta' id = 'inputPregunta' class="form-control" rows="3" ></textarea>
                                 </div>
                                 <button type="submit" id='btnPreguntar' class="btn btn-primary">Preguntar</button>
                             </form>
                         </div>
+                        <div  class='{$tipoAlerta}'>
+                            <button type='button' class='close' data-dismiss='alert'>×</button>
+                            {$mensajeAlerta}
+                        </div>
                     {else}
                         <div>    
                             <h3>Responder pregunta</h3>
                         </div>
                         <div>
-                            <form method="post" action="q&a.php" >
+                            <form method="post" action="respuestas.php?id={$publicacion.id}" >
                                 <div class="control-group">
                                     <select name="comboPreguntas">
                                         {foreach from=$preguntasSinRespuesta item=preg}
@@ -110,6 +114,10 @@
                                 </div>
                                 <button type="submit" id='btnResponder' class="btn btn-primary" >Responder</button>
                             </form>
+                        </div>
+                        <div  class='{$tipoAlerta}'>
+                            <button type='button' class='close' data-dismiss='alert'>×</button>
+                            {$mensajeAlerta}
                         </div>
                     {/if}
                 {else}

@@ -8,7 +8,7 @@
 
             <div class="span4">
                 <h4>Mis publicaciones</h4>
-                <form class="form-horizontal" method="POST" action="cerrarPublicacion.php">
+                <form class="form-horizontal" method="POST" action="cerrarPublicacionIntermedia.php">
                     <fieldset>
 
                         <div class="control-group">

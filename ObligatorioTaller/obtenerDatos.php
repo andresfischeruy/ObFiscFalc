@@ -221,7 +221,7 @@ function cerrarPublicacion($idPubli, $exito) {
     $sql = "UPDATE publicaciones SET abierto=0, exitoso=:exitoso";
     $sql .= " where id=:id";
     $cn = getConexion();
-    $cn->consulta($sql, array(
+    return $cn->consulta($sql, array(
         array("id", $idPubli, 'int'),
         array("exitoso", $exito, 'int')));
 }
