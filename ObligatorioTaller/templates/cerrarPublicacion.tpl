@@ -30,7 +30,7 @@
                             </label>
                         </fieldset>
 
-                        <button id = "btnPublicar" class="btn btn-large" type="submit">Cerrar publicación</button>
+                        <button id = "btnPublicar" class="btn btn-primary" type="submit">Cerrar publicación</button>
 
                     </fieldset>
 

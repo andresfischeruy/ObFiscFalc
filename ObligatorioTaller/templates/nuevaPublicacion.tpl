@@ -60,7 +60,7 @@
                             </div>
                         </div>
                     </fieldset>
-                    <button id = "btnPublicar" class="btn btn-large" type="submit">Publicar</button>
+                    <button id = "btnPublicar" class="btn btn-primary" type="submit">Publicar</button>
 
                 </form>
             </div>
